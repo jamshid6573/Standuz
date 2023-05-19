@@ -1,0 +1,413 @@
+{% load static %}
+
+
+
+
+  <style media="screen">
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;700&display=swap');
+
+
+
+.bod {
+font-family: 'Poppins', sans-serif;
+align-items: center;
+justify-content: center;
+width: 100%;
+}
+img {
+max-width: 100%;
+display: block;
+}
+ul {
+list-style: none;
+}
+
+/* a {
+  text-decoration: none;
+  
+  color: inherit;
+} */
+
+/* Utilities */
+.card::after,
+.card img {
+border-radius: 50%;
+}
+.bod,
+.card,
+.stats {
+display: flex;
+}
+
+.card {
+padding: 2.5rem 2rem;
+border-radius: 10px;
+background-color: rgba(255, 255, 255, .5);
+max-width: 100%;
+box-shadow: 0 0 30px rgba(0, 0, 0, .15);
+margin: 1rem;
+position: relative;
+transform-style: preserve-3d;
+overflow: hidden;
+}
+.card::before,
+.card::after {
+content: '';
+position: absolute;
+z-index: -1;
+}
+.card::before {
+width: 100%;
+height: 100%;
+border: 1px solid #FFF;
+border-radius: 10px;
+top: -.7rem;
+left: -.7rem;
+}
+.card::after {
+height: 15rem;
+width: 15rem;
+background-color: #b3404a;
+top: -8rem;
+right: -8rem;
+box-shadow: 2rem 6rem 0 -3rem #FFF
+}
+
+.card img {
+width: 8rem;
+min-width: 80px;
+box-shadow: 0 0 0 5px #FFF;
+}
+
+.infos {
+margin-left: 1.5rem;
+}
+
+.name {
+margin-bottom: 1rem;
+}
+.name h2 {
+font-size: 1.3rem;
+}
+.name h4 {
+font-size: .8rem;
+color: #333
+}
+
+.text {
+font-size: .9rem;
+margin-bottom: 1rem;
+}
+
+.stats {
+margin-bottom: 1rem;
+}
+.stats li {
+min-width: 5rem;
+}
+.stats li h3 {
+font-size: .99rem;
+}
+.stats li h4 {
+font-size: .75rem;
+}
+
+.links button {
+font-family: 'Poppins', sans-serif;
+min-width: 140px;
+padding: .6rem;
+border: 1px solid #222;
+border-radius: 5px;
+font-weight: bold;
+cursor: pointer;
+transition: all .25s linear;  
+}
+.links .follow,
+.links .view:hover {
+background-color: #222;
+color: #FFF;
+}
+.links .view,
+.links .follow:hover{
+background-color: transparent;
+color: #222;
+}
+
+@media screen and (max-width: 450px) {
+.card {
+  display: block;
+}
+.infos {
+  margin-left: 0;
+  margin-top: 1.5rem;
+}
+.links button {
+  min-width: 100px;
+}
+}
+
+.Profil {
+  width: 150px;
+  height: 45px;
+  margin-top: 22px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  background-color: white;
+  font-size:large;
+  border-radius: 7px;
+  color: black;
+  border-color: #222 ;
+  border-width: 1px;
+  
+}
+
+.Profil:hover{
+  background-color: #b3404a;
+  color: white;
+}
+
+
+/* 
+#myModal {
+    height: fit-content ;
+    width: 80%;
+    padding: 18px 9px;
+    border-radius: 25px;
+    background: #fafafa;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    margin: auto;
+    display: none;
+    opacity: 0;
+    z-index: 38;
+    text-align: center;
+    margin-top: 150px;
+    overflow:auto;
+    
+}
+
+
+#myModal #myModal__close {
+    width: 21px; height: 21px;
+    position: absolute;
+    font-size: 29px;
+    top: 1px; right: 11px;
+    cursor: pointer;
+    display: block;
+}
+
+#myOverlay {
+    z-index: 37;
+    position: fixed;
+    background: rgba(0,0,0,.7);
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+    cursor: pointer;
+    display: none;
+} */
+
+
+
+.inp {
+    box-sizing: border-box;
+    display: block;
+    margin: auto;
+    width: 90%;
+    height: 90px;
+    margin-bottom: 6px;
+    padding: 15px 25px;
+    border-radius: 20px;
+    border: 1px solid #11121c;
+    outline: none;
+    background-color: #11121c;
+    font-size: .875rem;
+    color: #fff;
+    letter-spacing: 1px;
+    transition: .25s;
+
+}
+
+.inp:hover{
+    background-color: #131520;
+    border-radius: 13px;
+    border-color: gold;
+}
+
+.labeltext {
+  margin-top: 50px;
+  margin-bottom: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 33px;
+  font-weight: 600;
+
+}
+
+.skinImg {
+  width: 55%;
+  margin: auto;
+  margin-top: 79px;
+  margin-bottom: 78px;
+}
+
+
+.skinlabel {
+  margin-top: 50px;
+  font-size: 36px;
+  font-family: 'Open Sans';
+  font-weight: 670;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%;
+  text-align: center;
+  background-color: #1b1c29;
+}
+
+/* The Close Button */
+.close {
+  width: 29px;
+  margin-left: auto;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+  </style>
+
+
+
+<!-- Trigger/Open The Modal -->
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  
+  <div class="modal-content">
+    <img class="X close" src="{% static 'img/svg/redx.png' %}" alt="">
+    <p style="font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 23px; color: #FFF;"> <span style="color: gold;">GOLD</span>  CHIQAZISH</p>
+      <span id="myModal__close" class="close"></span>
+  
+            <!-- <div style="text-align: start;margin-left: 100px;">Nechi Gold?</div> -->
+            <div class="labeltext" >Nechi Gold</div>
+            <form action="{% url 'give_order' %}" method="post">{% csrf_token %}
+              
+                <input class="inp" id="rate__input_buy" 
+                maxlength="7" placeholder="Minimum: 100 G"
+                onkeypress="validate(event)" oninput="rate_input_buy(this.value)" name="gold">
+                  <div style="color: #b6b2be;">GOLD 1-12 SOAT ICHIDA TUSHADI</div>
+  
+                    <div class="skinlabel">{{ skin.skin }}</div>
+                      <img class="skinImg" src="{{ skin.image.url }}" alt="">
+  
+                  <input class="inp" value="CHIQAZISH" type="submit" name="click" >
+        
+              
+                <div class="rate__oninput-wrapper oninput-wrapper">
+                    <div class="rate__oninput oninput">С комиссией: <span style="color: Gold;"
+                            id="rate__oninput_buy-percent">0.00</span><span style="color: Gold;">G</span>
+                </div>
+  
+          </form>
+  </div>
+
+</div>
+
+
+</div>
+<div id="myOverlay"></div>
+
+<div class="bod">
+  <div class="card">
+      <div class="img">
+        {% if user.image %}
+          <img style="width: 150px; height: 150px;" src="{{user.image.url}}">
+        {% else %}
+        <img style="width: 150px; height: 150px;" src="{% static 'img/icons/anon_users.png' %}">
+        {% endif %}
+        <button class="Profil">Profil</button>
+        
+      </div>
+      <div class="infos">
+        <div class="name">
+          <h2>{{ user }}</h2>
+          <h4 style="color: #b3404a;">ID {{user.id}}</h4>
+        </div>
+        <p class="text">
+          Text
+        </p>
+        <ul class="stats">
+          <li>
+            <h3>15K</h3>
+            <h4>Views</h4>
+          </li>
+          <li>
+            <h3>82</h3>
+            <h4>Projects</h4>
+          </li>
+          <li>
+            <h3>1.3M</h3>
+            <h4>Followers</h4>
+          </li>
+        </ul>
+        <div class="links">
+          <a style="display:inline-block;" class="myLinkModal"><button id="myBtn" class="follow">Gold chiqazish</button></a>
+          <button class="view">Istoriya</button>
+        </div>
+      </div>
+    </div>
+</div>
+<script>
+  // Get the modal
+  var modal = document.getElementById("myModal");
+  
+  // Get the button that opens the modal
+  var btn = document.getElementById("myBtn");
+  
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+  
+  // When the user clicks the button, open the modal 
+  btn.onclick = function() {
+    modal.style.display = "block";
+  }
+  
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+  
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+  </script>
+
+
+                                                                                                                                                                                                                                                                                      

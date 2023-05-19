@@ -1,0 +1,67 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru" prefix="og: https://ogp.me/ns#">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Сервис по оказанию услуг бустинга и продажи голды в Standoff 2!">
+    <title>Standoff 2</title>
+    <meta property="og:title" content="Сервис бустинга аккаунтов в Standoff 2">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://stand-service.ru/">
+    <meta property="og:image" content="https://stand-service.ru/img/ava.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Noto+Sans:wght@400;700&family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href= {% static "css/style.min.css" %} >
+    <link rel="shortcut icon" href= {% static 'img/favicon.jpg' %}>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+
+</head>
+
+<body class="preload">  
+    <div class="main-screen"><a class="" style="margin:30px" ></a>
+        <h1 class="main-title">STAND <span style="color:#b3404a">UZ</span> <span class="main-text">STAND<span>OFF
+                    2 </span>DAGI <br> ISHONCHLI VA TEZKOR DOSTINGIZ</span></h1>
+
+
+                    <!-- Login form -->
+                    <form class="main" action="" method="POST">
+                        <div class="main" style="margin-top: 20px;">
+                            {% csrf_token %}
+
+                                {% for i in form %}
+
+                                    {{ i }} <br>
+                                    
+
+                                {% endfor %}
+                                
+                                <div style="margin-top:15px; font-family:Arial, Helvetica, sans-serif; font-weight: 500;">{{ message }}</div>
+                                
+                            <button type="submit" class="button" >Kirish</button><br>
+                                
+                        </div>
+                                <div class="text-1">
+                                    Akkauntingiz yoqmi? <a style="color: #8f1d26;" href= {% url "register" %}>Registratsiya</a>
+                                </div>
+                    </form>
+
+
+                            <ul class="main-social">
+                                <li class="main-social__item"><a class="main-social__link" target="_blank"
+                                        href="https://vk.com/oldbooster"><img class="main-social__img" src= {% static "img/svg/in.svg" %} alt="instagram"></a>
+                                </li>
+                                <li class="main-social__item"><a class="main-social__link" target="_blank"
+                                        href="https://t.me/stand_service"><img class="main-social__img" src={% static "img/svg/tg.svg" %} alt="tg"></a>
+                                </li>
+                                <li class="main-social__item"><a class="main-social__link" target="_blank"
+                                        href="https://www.youtube.com/channel/UCrjLG44uv713SOCcIKYpm9w/featured"><img
+                                            class="main-social__img" src={% static "img/svg/yt.svg" %} alt="yt"></a></li>
+                            </ul>
+        
+    </body>

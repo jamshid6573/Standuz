@@ -1,0 +1,55 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Toldirish</title>
+</head>
+
+<style>
+     th, td {
+      border:1px solid black;
+    }
+    </style>
+
+<body>
+{% if user.is_superuser %}
+    <form method="post" >
+        {% csrf_token %}
+        <div style="text-align: center;">
+            <h2 style="text-align: center;">Toldirish</h2>
+            <input style="width: 30%; height: 30px; padding-left: 10px;" name="id" placeholder="ID kiriting" type="number"><br>
+            <input style="width: 30%; height: 30px; padding-left: 10px; margin-top: 10px;" name="gold" placeholder="Nechi Gold?" type="number"><br>
+            <button style="margin: 10px; width: 100px; height: 30px;" type="submit">Qidirish</button>
+
+            <hr style="margin: 50px; color:black">
+
+            <table style="width:100%">
+                <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Gold</td>
+                </tr>
+                <tr style="height: 50px;">
+                    <td>{{ id }}</td>
+                    <td>{{ name }}</td>
+                    <td>{{ gold }}</td>
+                </tr>
+            </table> <br>
+                
+            <h2 style="color: red; text-align: center;">{{ error }}</h2>
+            
+        </div>
+
+    </form> 
+
+   
+    
+    {% else %}
+    <h1>404</h1>
+    
+{% endif %}  
+</body>
+
+</html>

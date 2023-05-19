@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% load static %}
+{% csrf_token %}
+
+
+{% block title %}
+    Gold
+{% endblock %}
+
+
+    {% block content %}
+    
+ 
+        <main class="main">
+            
+            <div class="container">
+                
+            </div>
+            <section class="main-section">
+                <section class="case section">
+                    <div class="container">
+                        {% include 'main.html' %}
+                        <h2 class="case__title title">КЕЙСЫ С ГОЛДОЙ:</h2>
+                        <div class="case__row row">
+                            {% for case in Cases %}
+
+                                <div class="case__col col-3 col-lg-6 col-md-12">
+                                    <a href="{% url 'case_details' case.id %}">
+                                    <div class="case-box"><img style="margin: auto;" src="{{ case.image.url }}" alt="">
+                                        <div class="case-box__content">
+                                            <div class="case-box__value"><strong>{{ case.name }}</strong></div>
+                                            <div class="case-box__wrapper">
+                                                <div class="case-box__price">
+                                                    <div style="text-align: center;" class="case-box__new-price">{{ case.price }}</div>
+                                                    <div style="text-align: center;" style="margin: auto;" class="case-box__old-price">iOS: 179 ₽</div>
+                                                    <button style="width: 130px;
+                                                    border: 2px solid grey;
+                                                    border-radius: 9px;
+                                                    margin-top: 12px;
+                                                    font-size: 20px;
+                                                    font-weight: 600;">Ochish</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </a>
+                                </div>
+                            
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div id="popup-04" class="popup">
+                        <div class="popup__wrapper">
+                            <div class="popup__content"><a class="popup__close close-popup"></a>
+                                <h2 class="popup__title title">Выберите продавца:</h2><a class="popup__btn main-btn"
+                                    target="_blank" href="https://t.me/victor_fedorov">Виктор Федоров</a> <a
+                                    class="popup__btn main-btn" target="_blank" href="https://t.me/middlebooster">Сергей
+                                    Алексеевич</a> <a class="popup__btn main-btn" target="_blank"
+                                    href="https://t.me/OLEGGSER">Олег Баринов</a> <a class="popup__btn main-btn"
+                                    target="_blank" href="https://t.me/ValeriqOrlov">Валерий Орлов</a> <a
+                                    class="popup__btn main-btn" target="_blank" href="https://t.me/mrkus1">Марк
+                                    Ребров</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="features-purchase">
+                    <div class="container">
+                        <h2 class="features-purchase__title title">КУПИТЬ ИГРОВУЮ <strong>ВАЛЮТУ</strong></h2>
+                        <div class="features">
+                            <article class="features__col">
+                                <div class="features__box"><i class="features__icon icon-check"></i>
+                                    <h4 class="features__title">КОНТРОЛЬ <strong>БЕЗОПАСНОСТИ</strong></h4>
+                                    <p class="features__text">Мы продаем «чистую» голду, которая ранее покупалась в
+                                        игре, поэтому мы можем гарантировать Вам безопасность.</p>
+                                </div>
+                            </article>
+                            <article class="features__col">
+                                <div class="features__box"><i class="features__icon icon-rocket"></i>
+                                    <h4 class="features__title">БЫСТРЫЙ <strong>ВЫВОД</strong></h4>
+                                    <p class="features__text">Ваш предмет на рынке будет искать специальный скрипт,
+                                        который ускоряет вывод голды в несколько раз.</p>
+                                </div>
+                            </article>
+                            <article class="features__col">
+                                <div class="features__box"><i class="features__icon icon-holding"></i>
+                                    <h4 class="features__title">ЛУЧШАЯ <strong>ЦЕНА</strong></h4>
+                                    <p class="features__text">Мы продаем голду по курсу 0.63 ₽, это означает, что Вы
+                                        можете купить голду намного дешевле, чем в игре.</p>
+                                </div>
+                            </article>
+                            <article class="features__col">
+                                <div class="features__box"><i class="features__icon icon-support2"></i>
+                                    <h4 class="features__title">ПОДДЕРЖКА <strong>24/7</strong></h4>
+                                    <p class="features__text">Нужна помощь в покупке голды? Консультант в чате поможет
+                                        Вам и проконсультирует по любому вопросу.</p>
+                                </div>
+                            </article>
+                            <div class="features__col">
+                                <div class="features__wrapper-img"><img class="features__img"  src= {% static 'img/gold.png' %}
+                                        alt="gold"></div>
+                                        
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                </section>
+                <div class="divider"></div>
+                <section class="converter section">
+                    <div class="container">
+                            <div class="col-6 ">
+                                <div class="rate">
+                                    <h5 class="rate__title">КУПИТЬ ГОЛДУ</h5><input id="rate__input_buy"
+                                        class="rate__input input" maxlength="7" placeholder="Минимум: 100 G"
+                                        onkeypress="validate(event)" oninput="rate_input_buy(this.value)">
+                                    <div class="rate__oninput-wrapper oninput-wrapper">
+                                        <div class="rate__oninput oninput">Заплачу: <span
+                                                id="rate__oninput_buy">0.00</span><span>₽</span></div>
+                                        <div class="rate__oninput oninput">С комиссией: <span
+                                                id="rate__oninput_buy-percent">0.00</span><span>G</span></div>
+                                    </div><a class="rate__btn main-btn popup-link" href="gold.html#popup-04">Купить</a>
+                                </div>
+                            </div>    
+                    </div>
+                    <div id="popup-04" class="popup">
+                        <div class="popup__wrapper">
+                            <div class="popup__content"><a class="popup__close close-popup"></a>
+                                <h2 class="popup__title title">Выберите продавца:</h2><a class="popup__btn main-btn"
+                                    target="_blank" href="https://t.me/victor_fedorov">Виктор Федоров</a> <a
+                                    class="popup__btn main-btn" target="_blank" href="https://t.me/middlebooster">Сергей
+                                    Алексеевич</a> <a class="popup__btn main-btn" target="_blank"
+                                    href="https://t.me/ValeriqOrlov">Валерий Орлов</a>
+                                <a class="popup__btn main-btn" target="_blank" href="#">Марк Ребров</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="reviews-customer">
+                    <div class="container">
+                        <div class="reviews-customer__container">
+                            <div class="reviews-customer__box">
+                                <h2 class="reviews-customer__title title">ЧТО О НАС ГОВОРЯТ КЛИЕНТЫ</h2>
+                                <p class="reviews-customer__text">Успешно работаем с 2019 года</p>
+                            </div>
+                            <div class="divider-type-2"></div>
+                            <div class="reviews row">
+                                <div class="reviews__col col-4 col-md-12">
+                                    <div class="reviews-card">
+                                        <div class="reviews-card__box">
+                                            <div class="reviews-card__author">
+                                                <div class="reviews-card__preview"><img class="reviews-card__img"
+                                                        src="img/authors/01.jpg" alt="author"></div>
+                                                <div class="reviews-card__name">Иван<br>Кусочкин</div>
+                                            </div>
+                                            <p class="reviews-card__text">Все круто купил буст у Виктора Фёдорова</p><a
+                                                class="reviews-card__link_hidden" target="_blank"
+                                                href="https://vk.com/id613593039"></a>
+                                        </div>
+                                    </div>
+                                    <div class="reviews-card">
+                                        <div class="reviews-card__box">
+                                            <div class="reviews-card__author">
+                                                <div class="reviews-card__preview"><img class="reviews-card__img"
+                                                        src="img/authors/02.jpg" alt="author"></div>
+                                                <div class="reviews-card__name">Богдан'вилд<br>Климов</div>
+                                            </div>
+                                            <p class="reviews-card__text">Самый крутой сайт, купил 1к голды без проблем.
+                                                Отдельное спасибо Виктору Федорову</p><a
+                                                class="reviews-card__link_hidden" target="_blank"
+                                                href="https://vk.com/id558956952"></a>
+                                        </div>
+                                    </div>
+                                   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="description">
+                    <div class="container">
+                        <h2 class="description__title title">Зачем покупать голду?</h2>
+                        <p class="description__text">Популярный онлайн-шутер Standoff 2 знаменит своим стремительным
+                            развитием событий и увлекательным экшеном. Часто новички и бывалые игроки сталкиваются с
+                            недостатком средств, чтобы купить игровую валюту.</p>
+                        <p class="description__text">Решить эту проблему можно купив голду на нашем сайте. Ведь многим
+                            известно, что ситуация на рынке продажи голды очень печальна: вокруг одни мошенники и купить
+                            голду очень сложно, но не стоит расстраиваться! Наш сайт избавит Вас от этой участи и
+                            поможет приобрести голду на Ваш аккаунт без особых усилий и по самому низкому курсу!</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+       
+    {% endblock %}
+

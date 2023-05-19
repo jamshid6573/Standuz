@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<style>
+
+
+#myModal {
+    width: 65%; height: 30%;
+    padding: 18px 9px;
+    border-radius: 4px;
+    background: #fafafa;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    margin: auto;
+    display: none;
+    opacity: 0;
+    z-index: 38;
+    text-align: center;
+}
+
+
+#myModal #myModal__close {
+    width: 21px; height: 21px;
+    position: absolute;
+    font-size: 29px;
+    top: 1px; right: 11px;
+    cursor: pointer;
+    display: block;
+}
+
+#myOverlay {
+    z-index: 37;
+    position: fixed;
+    background: rgba(0,0,0,.7);
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+    cursor: pointer;
+    display: none;
+}
+
+</style>
+<body>
+
+ 
+<a class="myLinkModal" ><button >Анкор_ссылки</button></a>
+
+<div id="myModal">
+    <p>Контент</p>
+    <span id="myModal__close" class="close">ₓ</span>
+</div>
+<div id="myOverlay"></div>
+    
+</body>
+</html>
+
+<script>
+
+$(document).ready(function () {
+    $("a.myLinkModal").click(function (event) {
+        event.preventDefault();
+        $("#myOverlay").fadeIn(297, function () {
+            $("#myModal")
+                .css("display", "block")
+                .animate({ opacity: 1 }, 198);
+        });
+    });
+
+    $("#myModal__close, #myOverlay").click(function () {
+        $("#myModal").animate({ opacity: 0 }, 198, function () {
+            $(this).css("display", "none");
+            $("#myOverlay").fadeOut(297);
+        });
+    });
+});
+
+</script>
