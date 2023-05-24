@@ -1,232 +1,400 @@
-{% extends 'base.html' %}
 
-{% block head %}
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+{% load static %}
+
+
+    <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-{% endblock %}
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
  
  <style>
-    /* body {
-  background: #F1F3FA;
-} */
-
-/* Profile container */
-.profile {
-  margin: 20px 0;
+    .input-file {
+	position: relative;
+	display: inline-block;
 }
-
-/* Profile sidebar */
-.profile-sidebar {
-  padding: 20px 0 10px 0;
-  background: #fff;
+.input-file span {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	outline: none;
+	text-decoration: none;
+	font-size: 14px;
+	vertical-align: middle;
+	color: rgb(255 255 255);
+	text-align: center;
+	border-radius: 4px;
+	background-color: #419152;
+	line-height: 22px;
+	height: 40px;
+	padding: 10px 20px;
+	box-sizing: border-box;
+	border: none;
+	margin: 0;
+	transition: background-color 0.2s;
 }
-
-.profile-userpic img {
-  float: none;
-  margin: 0 auto;
-  width: 50%;
-  height: 50%;
-  -webkit-border-radius: 50% !important;
-  -moz-border-radius: 50% !important;
-  border-radius: 50% !important;
-}
-
-.profile-usertitle {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.profile-usertitle-name {
-  color: #5a7391;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 7px;
-}
-
-.profile-usertitle-job {
-  text-transform: uppercase;
-  color: #5b9bd1;
-  font-size: 12px;
-  font-weight: 600;
-  margin-bottom: 15px;
-}
-
-.profile-userbuttons {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.profile-userbuttons .btn {
-  text-transform: uppercase;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 6px 15px;
-  margin-right: 5px;
-}
-
-.profile-userbuttons .btn:last-child {
-  margin-right: 0px;
-}
-    
-.profile-usermenu {
-  margin-top: 30px;
-}
-
-.profile-usermenu ul li {
-  border-bottom: 1px solid #f0f4f7;
-}
-
-.profile-usermenu ul li:last-child {
-  border-bottom: none;
-}
-
-.profile-usermenu ul li a {
-  color: #93a3b5;
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.profile-usermenu ul li a i {
-  margin-right: 8px;
-  font-size: 14px;
-}
-
-.profile-usermenu ul li a:hover {
-  background-color: #fafcfd;
-  color: #5b9bd1;
-}
-
-.profile-usermenu ul li.active {
-  border-bottom: none;
-}
-
-.profile-usermenu ul li.active a {
-  color: #5b9bd1;
-  background-color: #f6f9fb;
-  border-left: 2px solid #5b9bd1;
-  margin-left: -2px;
-}
-
-/* Profile Content */
-.profile-content {
-  padding: 20px;
-  background: #fff;
-  min-height: 460px;
-}
-.inputfile {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
+.input-file input[type=file] {
 	position: absolute;
 	z-index: -1;
+	opacity: 0;
+	display: block;
+	width: 0;
+	height: 0;
+}
+ 
+/* Focus */
+.input-file input[type=file]:focus + span {
+	box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+ 
+/* Hover/active */
+.input-file:hover span {
+	background-color: #59be6e;
+}
+.input-file:active span {
+	background-color: #2E703A;
+}
+ 
+/* Disabled */
+.input-file input[type=file]:disabled + span {
+	background-color: #eee;
 }
 
-.inputfile + label {
-    font-size: 1.25em;
-    font-weight: 700;
-    color: white;
-    background-color: black;
-    display: inline-block;
-    cursor: pointer;
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 4; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-.inputfile:focus + label,
-.inputfile + label:hover {
-    background-color: red;
+/* Modal Content */
+.modal-content {
+  background-color: rgb(18, 18, 23);
+  margin: auto;
+  padding: 20px;
+  border: 2px solid green;
+  width: 80%;
+  border-radius: 30px;
 }
-
  </style>
 
-{% block content %}
+<!-- <div class="preload"><canvas id="snow"></canvas>
+  <div class="wrapper"> -->
+      <header id="header" class="header">
+          <div class="container">
+              <div class="header__wrapper"><a class="header__logo logo" href="#"><img style="width: 185px;" class="logo__img"
+                          src=" {% static 'img/svg/log.png' %} " alt="logo"> </a>  <a href="+++++++++++++" class="image-text">
+                              <!-- <div class="image-text__image">
+                               <img src={% static 'img/gold.png' %} height="90"  />
+                              </div>
+                              <div class="image-text__text">
+                               <h1 style="color:rgb(255, 217, 4); font-size: 50px;">{{ user.gold }}</h1>
+                              </div>
+                              <img style="margin-left: 10px ;" src={% static 'img/icons/plus.png' %} height="37"  /> -->
+                          </a> <a class="burger-btn"
+                      href="#"><span></span></a>
+                  <nav class="menu">
+                      
+                      
+                      <ul class="menu__list" >
+                          
+                          <li class="menu__item"><a class="menu__link" href="{% url 'index' %}">ASOSIY</a></li>
+                          <li class="menu__item"><a class="menu__link" href="gold.html">GOLD</a></li>
+                          <!-- <li class="menu__item"><a class="menu__link" href="guarantees.html">GARANTIYA</a></li> -->
+                          <li class="menu__item"><a class="menu__link" href="reviews.html">OTZIVLAR</a></li>
+                          <li class="menu__item"><a class="menu__link" href="about.html">BIZ HAQIMIZDA</a></li>
+                          <li class="menu__item"><a class="menu__link" href="support.html">BIZ BILAN BOG'LANISH</a></li>
+                          <li class="menu__item"><a class="menu__link" href="{% url 'logout' %}">CHIQISH</a></li>
+                      </ul>
+                  </nav>
+              </div>
+          </div>
+      </header>
 
-    <div class="container">
-        <div class="profile">
-            <div class="col">
-                <div style="text-align: center;" class="profile-sidebar">
-                    <!-- SIDEBAR USERPIC -->
-                    <div >
-                      STANDOFF2 dagi avatarka:
-                    </div>
-                    <div class="profile-userpic">
-                        <img style="width: 150px; height: 150px; margin: auto;" src="https://cdn.iview.abc.net.au/thumbs/i/do/DO2012H_62e35a902cf11_3600.jpg" class="img-responsive" alt="">
-                    </div>
-                    <!-- END SIDEBAR USERPIC -->
-                    <!-- SIDEBAR USER TITLE -->
-                    <div class="profile-usertitle">
-                        <div class="profile-usertitle-name">
-                            Gold chiqasish uchun STANDOFF2 dagi <br> avatarkanigizni yuklashingiz kerak.
+
+
+
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div style="text-align: center;" class="container">
+        <input placeholder="ISM" style="width: 100%; margin-top: 15px; color: #ffff;" class="user__btn" type="text" name="" id=""><br>
+        <input placeholder="FAMILIYA" style="width: 100%; margin-top: 15px;" class="user__btn" type="text" name="" id=""><br>
+        <input placeholder="EMAIL" style="width: 100%; margin-top: 15px;" class="user__btn" type="text" name="" id=""><br>
+        <input placeholder="NUMBER" style="width: 100%; margin-top: 15px;" class="user__btn" type="text" name="" id=""><br>
+        <input placeholder="TELEGRAM USERNAME"  style="width: 100%; margin-top: 15px;" class="user__btn" type="text" name="" id=""><br>
+        <div style="margin-top: 15px;" class="row">
+            <button class="close" style="background-color: red; width: 40%; height: 30px; border-radius: 5px; margin: auto; color: #ffff;">ORQAGA</button>
+            <button style="background-color: #59be6e; width: 40%; height: 30px; border-radius: 5px; margin: auto; color: #ffff;">SAQLASH</button>
+        </div>
+    </div>  
+  </div>
+
+</div>
+
+    
+    <section class="page" data-v-3f78fa57="" data-v-20d09b9b="">
+        <div class="container" data-v-3f78fa57="">
+            <div class="profile" data-v-3f78fa57="">
+                <div class="profile-header" data-v-3f78fa57="">
+                    <div class="profile-header__user" data-v-3f78fa57="">
+                        <div class="user" data-v-3f78fa57="">
+                            <div class="user__inner" data-v-3f78fa57="">
+                                <div class="user__top-content" data-v-3f78fa57="">
+                                    <div class="user__content" data-v-3f78fa57="">
+                                        <div class="user__photo-wrapper" data-v-3f78fa57=""><img
+                                                src="https://sun1-29.userapi.com/s/v1/ig2/6LEE3i74nGIpbWjXlBdorcLqDMzXExls1YwlsxUlCKCFx9aD6VfFkRR86dfzwZE6UqGmS-m2mg_MazBFFBk1dBWf.jpg?size=200x200&amp;quality=96&amp;crop=162,162,1296,1296&amp;ava=1"
+                                                alt="Омонов Джамшид" class="user__photo" width="50" height="50"
+                                                data-v-3f78fa57=""></div>
+                                        <div class="user__main-info" data-v-3f78fa57="">
+                                            <div class="user__name-wrapper" data-v-3f78fa57="">
+                                                <div class="user__name" data-v-3f78fa57="">{{ user }}</div>
+                                            </div>
+                                            <div class="user__balance" data-v-3f78fa57="">{{ user.sum }} so'm </div>
+                                            <div class="user__balance" data-v-3f78fa57="">{{ user.gold }} GOLD </div>
+                                        </div>
+                                            <div style="margin-top: 20px;" class="user-tabs__available link_val_profil" data-v-3f78fa57=""> USERID:
+                                                <div data-v-3f78fa57="">1198618</div>
+                                            </div>
+                                        
+                                    </div>
+                                </div>        
+                  
+                            </div>
                         </div>
                     </div>
-                    <input type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected" multiple />
-
-
-                      <label for="file">Choose a file</label>
-                    <!-- END SIDEBAR USER TITLE -->
-                    <!-- SIDEBAR BUTTONS -->
-                    <div class="profile-userbuttons">
-                        <button type="button" class="btn btn-success btn-sm">Follow</button>
-                        <button type="button" class="btn btn-danger btn-sm">Message</button>
-                    </div>
-                    <!-- END SIDEBAR BUTTONS -->
-                    <!-- SIDEBAR MENU -->
-                    <div class="profile-usermenu">
-                        <ul class="nav">
-                            <li class="active">
-                                <a href="#">
-                                <i class="glyphicon glyphicon-home"></i>
-                                Overview </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                <i class="glyphicon glyphicon-user"></i>
-                                Account Settings </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                <i class="glyphicon glyphicon-ok"></i>
-                                Tasks </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                <i class="glyphicon glyphicon-flag"></i>
-                                Help </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- END MENU -->
+                   
                 </div>
-            </div>
-            <div class="col-md-9">
-                <div class="profile-content">
-                   Some user related content goes here...
+
+<div class="user-tabs">
+    <div class="user__buttons" data-v-3f78fa57=""><!---->
+        <div class="user__btn-wrapper" data-v-3f78fa57=""><div class="user__btn">
+            ISM: {{ user }}
+        </div></div>
+        <div class="user__btn-wrapper" data-v-3f78fa57=""><div class="user__btn">
+            FAMILIYA
+        </div></div>
+        <div class="user__btn-wrapper" data-v-3f78fa57=""><div class="user__btn">
+            EMAIL
+        </div></div>
+        <div class="user__btn-wrapper" data-v-3f78fa57=""><div class="user__btn">
+            NUMBER
+        </div></div>
+        <div class="user__btn-wrapper" data-v-3f78fa57=""><div class="user__btn">
+            TELEGRAM USERNAME
+        </div></div>
+        <div  class="user__btn-wrapper" data-v-3f78fa57=""><button id="myBtn"
+                class="user__btn user__btn" data-v-3f78fa57="" style="text-align: center; background-color: #59be6e;"> Ozgartirish
+            </button></div>
+    </div>
+</div>
+
+                <div class="profile-header__info" data-v-3f78fa57="">
+                    <div class="profile-header__additional" data-v-3f78fa57="">
+                        <div class="user-avatar">
+                            <div class="user-avatar__info">
+                                <div class="user-avatar__title">Аватарка</div>
+                                <div class="user-avatar__content"></div>
+                                <div class="user-avatar__btn-wrapper">
+                                    <label class="input-file    ">
+                                    <input type="file" name="file">		
+                                    <span>Выберите файл</span>
+                              </label></div>
+                            </div>
+                            <div class="user-avatar__case"><img class="user-avatar__case-image"
+                                    src="https://cdn.so2baza.ru/images/static/avatar_default_player.png"
+                                    alt="ЗАГРУЗИТЬ АВАТАРКУ"
+                                    style="width: 115px; height: 115px; border: 2px solid rgb(39, 39, 48);"></div>         
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="user-tabs" data-v-3f78fa57="">
+                    <ul class="user-tabs__list">
+                        <li class="user-tabs__item"><a href="/user/1198618/inventory" class="history_top_menu_btn">
+                                <div class="user-tabs__btn user-tabs__btn-inner_not-stat">
+                                    <div class="user-tabs__btn-icon"><img
+                                            src="https://cdn.so2baza.ru/assets/images/user/icon/inventory.png"></div>
+                                    Инвентарь <!---->
+                                </div>
+                            </a></li>
+                        <li class="user-tabs__item"><a href="/user/1198618/freecases" class="history_top_menu_btn">
+                                <div class="user-tabs__btn user-tabs__btn-inner_not-stat">
+                                    <div class="user-tabs__btn-icon"><img
+                                            src="https://cdn.so2baza.ru/assets/images/user/icon/freecases.png?v=1">
+                                    </div> Бесплатные кейсы <div class="user-tabs__count">0</div>
+                                </div>
+                            </a></li>
+                        
+                    </ul>
+                </div>
+                <div class="user-tabs" data-v-3f78fa57="" style="justify-content: end;">
+                    <div class="user-tabs__additional">
+                        <div class="user-tabs__available user-tabs__sell-btn-wrapper"> Доступные предметы на вывод <div
+                                class="user-tabs__available-toggle"></div>
+                        </div>
+                        <div class="user-tabs__sell-btn-wrapper"><button
+                                class="user-tabs__sell-btn icon_dop__menu sell_all_btn"
+                                style="background-color: rgb(212, 70, 70);"> Продать все </button></div>
+                        <div class="user-tabs__sell-btn-wrapper"><button
+                                class="user-tabs__sell-btn icon_dop__menu send_item_users"
+                                style="background-color: rgb(243, 164, 93);"> Передать скин </button></div>
+                        <div class="user-tabs__sell-btn-wrapper"><button
+                                class="user-tabs__sell-btn icon_dop__menu gift_code"
+                                style="background-color: rgb(68, 228, 44); color: rgb(0, 0, 0);"> Подарок </button>
+                        </div>
+                        <div class="user-tabs__sell-btn-wrapper"><a href="/exchange"
+                                class="user-tabs__sell-btn icon_dop__menu exchanger_btn"> Обменник скинов </a></div>
+                        <div class="user-tabs__sell-btn-wrapper"><a href="/shop/item"
+                                class="user-tabs__sell-btn icon_dop__menu bay_skin"> Купить скины </a></div>
+                        <div class="user-tabs__sell-btn-wrapper"><button
+                                class="user-tabs__sell-btn icon_dop__menu kak_output" active-class="active"> Как
+                                выводить? </button></div>
+                    </div>
+                </div>
+                <div class="orders" data-v-3f78fa57="">
+                    <ul class="items orders__list"></ul><!---->
+                    <div class="error__block_info" data-v-71ec44b8="">
+                        <div class="error_wrapper" data-v-71ec44b8="">
+                            <div class="error_err__circle" data-v-71ec44b8="">
+                                <div class="error_err__circle-inner" data-v-71ec44b8="">
+                                    <div class="error_err__circle-image" data-v-71ec44b8=""><img class="error_err__img"
+                                            src="https://cdn.so2baza.ru/assets/images/error.png"
+                                            alt="Больше нет информации" data-v-71ec44b8=""></div>
+                                </div>
+                            </div>
+                            <div class="error_err__text" data-v-71ec44b8="">Больше нет информации</div>
+                        </div>
+                    </div>
+                    <div class="load" data-v-563616d1=""><button class="load__btn" data-v-563616d1="">Показать
+                            еще</button></div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-{% endblock %}
+
+
+
+    <footer class="footer">
+      <div class="footer__top">
+          <div class="container">
+              <div class="footer__row row">
+                  <article class="footer__col col-6 col-md-12">
+                      <div class="footer-about"><a class="footer-about__logo logo" href="index.html"><img
+                                  class="logo__img" src=" {% static 'img/svg/logo.svg' %} " alt="logo"></a>
+                          <p class="footer-about__text">Stand Service – это мощная команда бустеров, про-игроков и
+                              просто любителей игры Standoff 2. В нашем арсенале новейшие технологии, любовь к
+                              своему делу и многолетний опыт. Мы знаем, с чем имеем дело. И мы знаем, как Вам
+                              помочь.</p>
+                          <ul class="footer-about__list">
+                              <li class="footer-about__item"><a class="footer-about__link" target="_blank"
+                                      href="https://t.me/middlebooster">Сотрудничество с нами</a></li>
+                              <li class="footer-about__item"><a class="footer-about__link"
+                                      href="agreement.html">Пользовательское соглашение</a></li>
+                          </ul>
+                      </div>
+                  </article>
+                  <article class="footer__col col-2 col-md-12">
+                      <div class="footer-menu">
+                          <h5 class="footer-title">МЕНЮ</h5>
+                          <ul class="footer-menu__list">
+                              <li class="footer-menu__item"><a class="footer-menu__link"
+                                      href="index.html">ГЛАВНАЯ</a></li>
+                              <li class="footer-menu__item"><a class="footer-menu__link"
+                                      href="gold.html">ГОЛДА</a></li>
+                              <li class="footer-menu__item"><a class="footer-menu__link"
+                                      href="boosting.html">БУСТИНГ</a></li>
+                              <li class="footer-menu__item"><a class="footer-menu__link"
+                                      href="guarantees.html">ГАРАНТИИ</a></li>
+                              <li class="footer-menu__item"><a class="footer-menu__link"
+                                      href="reviews.html">ОТЗЫВЫ</a></li>
+                              <li class="footer-menu__item"><a class="footer-menu__link" href="about.html">О
+                                      НАС</a></li>
+                              <li class="footer-menu__item"><a class="footer-menu__link"
+                                      href="support.html">ПОДДЕРЖКА</a></li>
+                          </ul>
+                      </div>
+                  </article>
+                  <article class="footer__col col-4 col-md-12">
+                      <div class="footer-widget">
+                          <h5 class="footer-title">TELEGRAM</h5><iframe id="tgw_619f2beeeea51566507f0513"
+                              frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no"
+                              width="100%" height="350px" async></iframe>
+                      </div>
+                  </article>
+              </div>
+          </div>
+      </div>
+      <div class="footer__bottom">
+          <div class="container">
+              <div class="footer-box">
+                  <div class="footer-box__item">
+                      <p class="footer-box__copyright-text">⚡<a href="index.html">STAND-SERVICE.RU</a> © 2019-2022
+                      </p>
+                  </div>
+                  <div class="footer-box__item">
+                      <ul class="footer-box__icons-list">
+                          <li class="footer-box__icons-item"><a class="icon-vk" target="_blank"
+                                  href="https://vk.com/oldbooster"></a></li>
+                          <li class="footer-box__icons-item"><a class="icon-tg" target="_blank"
+                                  href="https://t.me/stand_service"></a></li>
+                          <li class="footer-box__icons-item"><a class="icon-yt" target="_blank"
+                                  href="https://www.youtube.com/channel/UCrjLG44uv713SOCcIKYpm9w/featured"></a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </footer>
+    
+
+ 
+
 
 <script>
-var inputs = document.querySelectorAll( '.inputfile' );
-Array.prototype.forEach.call( inputs, function( input )
-{
-	var label	 = input.nextElementSibling,
-		labelVal = label.innerHTML;
+  // $('.input-file input[type=file]').on('change', function(){
+  // 	let file = this.files[0];
+  // 	$(this).next().html(file.name);
+  // });
+  
+          // Get the modal
+  var modal = document.getElementById("myModal");
+  
+  // Get the button that opens the modal
+  var btn = document.getElementById("myBtn");
+  
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+  
+  // When the user clicks the button, open the modal 
+  btn.onclick = function() {
+    modal.style.display = "block";
+  }
+  
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+  
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+      </script>
+<script src="{% static 'js/scripts.min.js' %}"></script>
 
-	input.addEventListener( 'change', function( e )
-	{
-		var fileName = '';
-		if( this.files && this.files.length > 1 )
-			fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
-		else
-			fileName = e.target.value.split( '\\' ).pop();
-
-		if( fileName )
-			label.querySelector( 'span' ).innerHTML = fileName;
-		else
-			label.innerHTML = labelVal;
-	});
-});
-</script>

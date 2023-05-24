@@ -61,7 +61,8 @@ def give_order(request):
     return render(request, "gold.html")
 
 def profile(request):
-    return render(request, 'Users/profile.html')
+    info = UsersAb.objects.all()
+    return render(request, 'Users/profile.html', {"info": info})
     
 
 
