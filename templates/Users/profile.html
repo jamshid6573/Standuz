@@ -154,18 +154,18 @@
                                 <div class="user__top-content" data-v-3f78fa57="">
                                     <div class="user__content" data-v-3f78fa57="">
                                         <div class="user__photo-wrapper" data-v-3f78fa57=""><img
-                                                src="https://sun1-29.userapi.com/s/v1/ig2/6LEE3i74nGIpbWjXlBdorcLqDMzXExls1YwlsxUlCKCFx9aD6VfFkRR86dfzwZE6UqGmS-m2mg_MazBFFBk1dBWf.jpg?size=200x200&amp;quality=96&amp;crop=162,162,1296,1296&amp;ava=1"
+                                                src="{{ user.image.url }}"
                                                 alt="Омонов Джамшид" class="user__photo" width="50" height="50"
                                                 data-v-3f78fa57=""></div>
                                         <div class="user__main-info" data-v-3f78fa57="">
                                             <div class="user__name-wrapper" data-v-3f78fa57="">
-                                                <div class="user__name" data-v-3f78fa57="">{{ user }}</div>
+                                                <div style="color: white; font-size: 15px; font-weight: 700;" class="user__name" data-v-3f78fa57="">{{ user }}</div>
                                             </div>
                                             <div class="user__balance" data-v-3f78fa57="">{{ user.sum }} so'm </div>
                                             <div class="user__balance" data-v-3f78fa57="">{{ user.gold }} GOLD </div>
                                         </div>
-                                            <div style="margin-top: 20px;" class="user-tabs__available link_val_profil" data-v-3f78fa57=""> USERID:
-                                                <div data-v-3f78fa57="">1198618</div>
+                                            <div style="margin-top: 20px;" class="user-tabs__available link_val_profil" data-v-3f78fa57=""> ID:
+                                                <div data-v-3f78fa57="">{{ user.id }}</div>
                                             </div>
                                         
                                     </div>
@@ -204,7 +204,7 @@
                     <div class="profile-header__additional" data-v-3f78fa57="">
                         <div class="user-avatar">
                             <div class="user-avatar__info">
-                                <div class="user-avatar__title">Аватарка</div>
+                                <div class="user-avatar__title">Avatar</div>
                                 <div class="user-avatar__content"></div>
                                 <div class="user-avatar__btn-wrapper">
                                     <label class="input-file    ">
@@ -213,7 +213,7 @@
                               </label></div>
                             </div>
                             <div class="user-avatar__case"><img class="user-avatar__case-image"
-                                    src="https://cdn.so2baza.ru/images/static/avatar_default_player.png"
+                                    src="{{ user.image.url }}"
                                     alt="ЗАГРУЗИТЬ АВАТАРКУ"
                                     style="width: 115px; height: 115px; border: 2px solid rgb(39, 39, 48);"></div>         
                         </div>
@@ -277,8 +277,7 @@
                             <div class="error_err__text" data-v-71ec44b8="">Больше нет информации</div>
                         </div>
                     </div>
-                    <div class="load" data-v-563616d1=""><button class="load__btn" data-v-563616d1="">Показать
-                            еще</button></div>
+                    <div class="load" data-v-563616d1=""></div>
                 </div>
             </div>
         </div>
