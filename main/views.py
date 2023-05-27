@@ -8,6 +8,7 @@ from users.models import UsersAb
 from django.contrib.auth.models import User
 from .forms import Update_balanseFORM
 from main.my_func import gold_com
+from users.forms import ImageChangeForm, ProfileChangeForm
 
 def index(request):
     if request.user.is_authenticated:
@@ -41,7 +42,6 @@ def get_balans(request):
 
 
 
-            
 
             return render(request, "admin/balanse_update.html", context)
 
@@ -61,8 +61,26 @@ def give_order(request):
     return render(request, "gold.html")
 
 def profile(request):
-    info = UsersAb.objects.all()
-    return render(request, 'Users/profile.html', {"info": info})
+    user_profile = UsersAb.objects.get(id = request.user.id)
+    user_profile1 = UsersAb.objects.filter(id = request.user.id)
+    if request.POST:
+        try:
+            if request.POST['profile']=='profile':
+                profile_form = ProfileChangeForm(request.POST, instance=user_profile)
+                if profile_form.is_valid():
+                    profile_form.save()
+                    return redirect('profile')              
+        except:
+            image_form = ImageChangeForm(request.POST, request.FILES, instance=user_profile)
+            if image_form.is_valid():
+                img =image_form.cleaned_data['image']
+                user_profile1.update(image=img)
+                return redirect('profile')
+    context = {
+        'img_change': ImageChangeForm,
+        'profile_change': ProfileChangeForm
+    }
+    return render(request, 'Users/profile.html', context)
     
 
 

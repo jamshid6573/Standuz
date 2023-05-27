@@ -86,6 +86,12 @@
   width: 80%;
   border-radius: 30px;
 }
+
+.modal-input {
+    width: 100%;
+    margin-top: 15px;
+    color: #ffff;
+}
  </style>
 
 <!-- <div class="preload"><canvas id="snow"></canvas>
@@ -129,15 +135,16 @@
   <!-- Modal content -->
   <div class="modal-content">
     <div style="text-align: center;" class="container">
-        <input placeholder="ISM" style="width: 100%; margin-top: 15px; color: #ffff;" class="user__btn" type="text" name="" id=""><br>
-        <input placeholder="FAMILIYA" style="width: 100%; margin-top: 15px;" class="user__btn" type="text" name="" id=""><br>
-        <input placeholder="EMAIL" style="width: 100%; margin-top: 15px;" class="user__btn" type="text" name="" id=""><br>
-        <input placeholder="NUMBER" style="width: 100%; margin-top: 15px;" class="user__btn" type="text" name="" id=""><br>
-        <input placeholder="TELEGRAM USERNAME"  style="width: 100%; margin-top: 15px;" class="user__btn" type="text" name="" id=""><br>
-        <div style="margin-top: 15px;" class="row">
-            <button class="close" style="background-color: red; width: 40%; height: 30px; border-radius: 5px; margin: auto; color: #ffff;">ORQAGA</button>
-            <button style="background-color: #59be6e; width: 40%; height: 30px; border-radius: 5px; margin: auto; color: #ffff;">SAQLASH</button>
-        </div>
+        <form method="POST">
+            {% csrf_token %}
+            {% for i in profile_change %}
+            {{ i }} <br>
+            {% endfor %}
+            <div style="margin-top: 15px;" class="row">
+                <button type="button" class="close" style="background-color: red; width: 40%; height: 30px; border-radius: 5px; margin: auto; color: #ffff;">ORQAGA</button>
+                <button name="profile" value="profile" type="submit" style="background-color: #59be6e; width: 40%; height: 30px; border-radius: 5px; margin: auto; color: #ffff;">SAQLASH</button>
+            </div>
+        </form>
     </div>  
   </div>
 
@@ -153,16 +160,19 @@
                             <div class="user__inner" data-v-3f78fa57="">
                                 <div class="user__top-content" data-v-3f78fa57="">
                                     <div class="user__content" data-v-3f78fa57="">
-                                        <div class="user__photo-wrapper" data-v-3f78fa57=""><img
-                                                src="{{ user.image.url }}"
-                                                alt="Омонов Джамшид" class="user__photo" width="50" height="50"
-                                                data-v-3f78fa57=""></div>
+                                        <div class="user__photo-wrapper" data-v-3f78fa57="">
+                                            {% if user.image %}
+                                            <img src="{{ user.image.url }}" alt="" class="user__photo" width="50" height="50" data-v-3f78fa57="">
+                                            {% else %}
+                                            <img src="{% static 'img/avatar_default_player.png' %}" alt="" class="user__photo" width="50" height="50" data-v-3f78fa57="">
+                                            {% endif %}
+                                        </div>
                                         <div class="user__main-info" data-v-3f78fa57="">
                                             <div class="user__name-wrapper" data-v-3f78fa57="">
                                                 <div style="color: white; font-size: 15px; font-weight: 700;" class="user__name" data-v-3f78fa57="">{{ user }}</div>
                                             </div>
                                             <div class="user__balance" data-v-3f78fa57="">{{ user.sum }} so'm </div>
-                                            <div class="user__balance" data-v-3f78fa57="">{{ user.gold }} GOLD </div>
+                                            <div style="color: goldenrod" class="user__balance" data-v-3f78fa57="">{{ user.gold }}  <img src="{% static 'img/gold.png' %}" alt="" style="display: initial; width: 38px;"></div>
                                         </div>
                                             <div style="margin-top: 20px;" class="user-tabs__available link_val_profil" data-v-3f78fa57=""> ID:
                                                 <div data-v-3f78fa57="">{{ user.id }}</div>
@@ -180,19 +190,19 @@
 <div class="user-tabs">
     <div class="user__buttons" data-v-3f78fa57=""><!---->
         <div class="user__btn-wrapper" data-v-3f78fa57=""><div class="user__btn">
-            ISM: {{ user }}
+            ISM: {% if user.first_name %} {{ user.first_name }} {% else %}  yoq {% endif %}
         </div></div>
         <div class="user__btn-wrapper" data-v-3f78fa57=""><div class="user__btn">
-            FAMILIYA
+            FAMILIYA: {% if user.last_name %} {{ user.last_name }} {% else %}  yoq {% endif %}
         </div></div>
         <div class="user__btn-wrapper" data-v-3f78fa57=""><div class="user__btn">
-            EMAIL
+            EMAIL:  {% if user.email %} {{ user.email }} {% else %}  yoq {% endif %}
         </div></div>
         <div class="user__btn-wrapper" data-v-3f78fa57=""><div class="user__btn">
-            NUMBER
+            NUMBER: {% if user.number %} {{ user.number }} {% else %}  yoq {% endif %}
         </div></div>
         <div class="user__btn-wrapper" data-v-3f78fa57=""><div class="user__btn">
-            TELEGRAM USERNAME
+            TELEGRAM USERNAME: {% if user.tg %} {{ user.tg }} {% else %}  yoq {% endif %}
         </div></div>
         <div  class="user__btn-wrapper" data-v-3f78fa57=""><button id="myBtn"
                 class="user__btn user__btn" data-v-3f78fa57="" style="text-align: center; background-color: #59be6e;"> Ozgartirish
@@ -204,20 +214,36 @@
                     <div class="profile-header__additional" data-v-3f78fa57="">
                         <div class="user-avatar">
                             <div class="user-avatar__info">
-                                <div class="user-avatar__title">Avatar</div>
-                                <div class="user-avatar__content"></div>
+                                <div style="color: #b3404a" class="user-avatar__title">STANDOFF 2 DAGI AVATARKANGIZ</div>
+                                <div class="user-avatar__content">GOLD CHIQAZISH UCHUN STANDOFF 2 DAGI AVATARKANGIZNI YUKLASHINGIZ KERAK</div>
                                 <div class="user-avatar__btn-wrapper">
-                                    <label class="input-file    ">
-                                    <input type="file" name="file">		
-                                    <span>Выберите файл</span>
-                              </label></div>
+                                    <form method="POST" enctype="multipart/form-data" id="form1">
+                                        {% csrf_token %}
+                                    <label class="input-file">
+                                        {{ img_change }}
+                                    <!-- <input type="file" name="file"	 -->
+                                    <span style="font-weight: 700;" >OZGARTIRISH</span>
+                                    </label>
+                                    </form>
+
                             </div>
-                            <div class="user-avatar__case"><img class="user-avatar__case-image"
-                                    src="{{ user.image.url }}"
-                                    alt="ЗАГРУЗИТЬ АВАТАРКУ"
-                                    style="width: 115px; height: 115px; border: 2px solid rgb(39, 39, 48);"></div>         
+                            </div>
+                            <div class="user-avatar__case"> 
+                                {% if user.image %}
+                                <img class="user-avatar__case-image" src="{{ user.image.url }}" alt="ЗАГРУЗИТЬ АВАТАРКУ" style="width: 115px; height: 115px; border: 2px solid rgb(39, 39, 48);">
+                                {% else %}
+                                <img class="user-avatar__case-image" src="{% static 'img/avatar_default_player.png' %}" alt="ЗАГРУЗИТЬ АВАТАРКУ" style="width: 115px; height: 115px; border: 2px solid rgb(39, 39, 48);">
+                                {% endif %}
+                                <!-- <form method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {{ img_change.as_p }}
+                                    <button type="submit">go</button>
+                                </form> -->
+                            </div>         
                         </div>
                     </div>
+
+                    
                     
                 </div>
                 <div class="user-tabs" data-v-3f78fa57="">
@@ -278,7 +304,7 @@
                         </div>
                     </div>
                     <div class="load" data-v-563616d1=""></div>
-                </div>
+                    </div>
             </div>
         </div>
     </section>
@@ -394,6 +420,17 @@
       modal.style.display = "none";
     }
   }
+
+  document.getElementById("file111").onchange = function() {
+    document.getElementById("form1").submit();
+};
+
+var first_name = document.getElementById("id_first_name").setAttribute('value', '{{ user.first_name }}')
+var last_name = document.getElementById("id_last_name").setAttribute('value', '{{ user.last_name }}')
+var number = document.getElementById("id_number").setAttribute('value', '{{ user.number }}')
+var tg = document.getElementById("id_tg").setAttribute('value', '{{ user.tg }}')
+
+
       </script>
 <script src="{% static 'js/scripts.min.js' %}"></script>
 

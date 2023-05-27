@@ -5,7 +5,16 @@
   box-sizing: content-box;
 }
 
-body {
+/* body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #13161a;
+  color: white;
+} */
+
+.body1{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,7 +39,7 @@ body {
 
 .app {
   position: relative;
-  width: 650px;
+  width: 95%;
   background: #1b1f24;
   border-radius: 10px;
 }
@@ -58,8 +67,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 200px;
-  height: 160px;
+  width: 6rem;
+  height: 7rem;
   opacity: 0.5;
   transition: 0.3s ease;
 }
@@ -70,7 +79,7 @@ body {
   opacity: 1;
 }
 .app .scope .list__item.active img {
-  transform: scale(1.05);
+  transform: scale(1.20);
 }
 .app .scope .list__item img {
   width: 80%;
