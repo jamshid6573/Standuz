@@ -31,7 +31,7 @@ list-style: none;
 /* Utilities */
 .card::after,
 .card img {
-border-radius: 50%;
+border-radius: 20%;
 }
 .bod,
 .card,
@@ -64,9 +64,7 @@ top: -.7rem;
 left: -.7rem;
 }
 .card::after {
-height: 15rem;
-width: 15rem;
-background-color: #b3404a;
+
 top: -8rem;
 right: -8rem;
 box-shadow: 2rem 6rem 0 -3rem #FFF
@@ -75,7 +73,7 @@ box-shadow: 2rem 6rem 0 -3rem #FFF
 .card img {
 width: 8rem;
 min-width: 80px;
-box-shadow: 0 0 0 5px #FFF;
+
 }
 
 .infos {
@@ -351,7 +349,7 @@ color: #222;
         {% else %}
         <img style="width: 150px; height: 150px;" src="{% static 'img/avatar_default_player.png' %}">
         {% endif %}
-        <button class="Profil">Profil</button>
+        <a href="{% url 'profile' %}"><button class="Profil">Profil</button></a>
         
       </div>
       <div class="infos">

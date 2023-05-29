@@ -16,7 +16,7 @@ class UsersAb(AbstractUser):
     role = models.CharField(max_length=255, choices=ROLES, default=USER, blank=True)
     gold = models.FloatField(default=0, null=True, blank=True)
     sum = models.FloatField(default=0, null=True, blank=True)
-    image = models.ImageField(default=None, null=True, blank=True)
+    image = models.ImageField(default=None, null=True, blank=True, upload_to='Users/', height_field=None, width_field=None, max_length=100)
     total_gold = models.FloatField(default=0, null=True, blank=True)
     open_box = models.IntegerField(default=0, null=True, blank=True)
     tg = models.CharField(max_length=255, null=True, blank=True)

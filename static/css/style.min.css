@@ -184,7 +184,13 @@ body {
     animation: .3s linear fade-in;
     -webkit-animation: .3s linear fade-in;
     -moz-animation: .3s linear fade-in;
-    -o-animation: .3s linear fade-in
+    -o-animation: .3s linear fade-in;
+    background: #0b0d26 url(https://cdn.so2baza.ru/images/background3.jpg) no-repeat 100% 0;
+    background-attachment: fixed;
+    background-size: cover;
+    transition: all .35s ease-in-out;
+    background-position: 50%;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.5);
 }
 
 body ::-moz-selection {

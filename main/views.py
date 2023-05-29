@@ -21,7 +21,13 @@ def index(request):
         return redirect('home')
 
 def case_details(request, id):
-    return render(request, 'case_details.html')
+    case = Cases.objects.get(id=id)
+    case_items = case.items.all().order_by("chance")
+    context = {
+        "case": case,
+        "cases_items": case_items
+    }
+    return render(request, 'case_details.html', context)
 
 
 def get_balans(request):
@@ -63,19 +69,23 @@ def give_order(request):
 def profile(request):
     user_profile = UsersAb.objects.get(id = request.user.id)
     user_profile1 = UsersAb.objects.filter(id = request.user.id)
-    if request.POST:
-        try:
-            if request.POST['profile']=='profile':
-                profile_form = ProfileChangeForm(request.POST, instance=user_profile)
-                if profile_form.is_valid():
-                    profile_form.save()
-                    return redirect('profile')              
-        except:
+    print(request.FILES)
+
+    if request.POST and request.FILES:
             image_form = ImageChangeForm(request.POST, request.FILES, instance=user_profile)
             if image_form.is_valid():
-                img =image_form.cleaned_data['image']
-                user_profile1.update(image=img)
+                # img =image_form.cleaned_data['image']
+                # print(img)
+                # user_profile1.update(image=img)
+                image_form.save()
                 return redirect('profile')
+
+    elif request.POST:
+        profile_form = ProfileChangeForm(request.POST, instance=user_profile)
+        if profile_form.is_valid():
+            profile_form.save()
+            return redirect('profile')              
+    
     context = {
         'img_change': ImageChangeForm,
         'profile_change': ProfileChangeForm

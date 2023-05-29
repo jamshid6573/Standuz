@@ -1,4 +1,4 @@
-const cells = 50
+const cells = 31
 
 // From 0.001 to 100
 const items = [
@@ -17,7 +17,7 @@ function getItem() {
     const chance = Math.floor(Math.random() * 1000)
     
     items.forEach(elm => {
-      if (chance < elm.chance && !item) item = elm
+      if (chance * 1000 < elm.chance && !item) item = elm
     })
   }
 
