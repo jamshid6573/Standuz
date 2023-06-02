@@ -14,6 +14,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 
 
+
 def index(request):
     if request.user.is_authenticated:
         context = {
@@ -35,6 +36,12 @@ def case_details(request, id):
 
 @csrf_exempt
 def balance_check(request):
+    if request.POST:
+        user_sum = UsersAb.objects.get(id=request.user.id).sum
+        case_price = request.POST.get("case_price")
+        sum = float(user_sum)-float(case_price)
+        UsersAb.objects.filter(id=request.user.id).update(sum=sum)
+        return HttpResponse("Ok")
     user_id = request.user.id
     balance_sum = UsersAb.objects.get(id=user_id).sum
     return JsonResponse({"sum":balance_sum})

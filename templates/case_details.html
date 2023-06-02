@@ -296,6 +296,8 @@ function FPSViewer() {
 }; FPSViewer()
 
 function check_balance() {
+
+    const case_price = '{{ case.price }}'
     
     // button = document.querySelector('.start')
     // sum = {{ user.sum }}
@@ -305,12 +307,36 @@ function check_balance() {
     // } else{
     //     button.innerHTML="yo"
     // }
-    const responce = fetch('http://127.0.0.1:8000/main/balance_check/', {
+
+  
+         $.ajax({
+        url: "http://127.0.0.1:8000/main/balance_check/",
+        type: "GET",
         headers: {
-        Accept: "application/json",
-        },
+         Accept: "application/json",
+         },
+        success: function (data) {
+            sum = data['sum']
+            if (parseFloat(case_price) <= parseFloat(sum)) {
+                $.ajax(
+                    {
+                        url: "http://127.0.0.1:8000/main/balance_check/",
+                        type: "POST",
+                        headers: {
+                        Accept: "application/json",
+                        },
+                        data: {"case_price": parseFloat('{{ case.price }}') },
+                        success: function (data) {
+                            start()
+                            
+                        }
+                    }
+                )
+            } else {
+                console.log("pul yetmayapdi");
+            };
+        }, 
     });
-    console.log()
 
 };
 
