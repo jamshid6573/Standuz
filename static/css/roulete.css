@@ -57,8 +57,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 6rem;
-  height: 7rem;
+  width: 8rem;
+  height: 9rem;
   opacity: 0.5;
   transition: 0.3s ease;
 }
@@ -109,6 +109,7 @@
     border-radius: 20px;
     background-color: rgb(0 0 0 / 15%);
     overflow: hidden;
+    flex-wrap: wrap;
 }
 
 .case-img{
@@ -119,7 +120,7 @@
 
 .case-items-container{
   padding: 1rem;
-  padding-top: 15rem;
+  padding-top: 5rem;
   display: grid;
   grid-template-columns: repeat(6,1fr);
   gap: 7px;
@@ -154,4 +155,94 @@
   .case-items-container{
       gap:5px;
   }
+}
+
+.case-item-name{
+    padding: 10px 25px 10px 10px;
+    font-size: .65rem;
+    text-transform: capitalize;
+    white-space: nowrap;
+    letter-spacing: .01em;
+    font-family: inherit;
+    font-weight: 600;
+}
+
+.case-item-quality-line{
+  position: relative;
+  background-color: #e52a5b;
+  height: 10px;
+  z-index: 3;
+}
+
+.case-item-name-container{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.red{
+  background-color: #e52a5b;
+}
+
+.pink{
+  background-color: #d766ed;
+}
+
+.violet{
+  background-color: #8a5ce5;
+}
+
+.blue{
+  background-color: #667fff;
+}
+
+.light-blue{
+  background-color: #209dd2;
+}
+
+.gold{
+  background-color: #e7a800;
+}
+
+.grey{
+  background-color: #544d64
+}
+
+
+.red-text{
+  color: #e52a5b;
+}
+
+.pink-text{
+  color: #d766ed;
+}
+
+.violet-text{
+  color: #8a5ce5;
+}
+
+.blue-text{
+  color: #667fff;
+}
+
+.light-blue-text{
+  color: #209dd2;
+}
+
+.gold-text{
+  color: #e7a800;
+}
+
+.grey-text{
+  color: #544d64
+}
+
+.case-item-gold{
+  position: absolute;
+  right: 10px;
+  bottom: 20px;
+  font-size: .75rem;
+  color: #ffc259;
+  font-weight: 900;
 }

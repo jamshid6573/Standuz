@@ -50,7 +50,7 @@
     <div style="display:none" class="FPS">0</div>
     <h2 style="text-align: center;
     padding-top: 4rem;
-    font-size: 2rem;
+    font-size: 3rem;
     font-family: monospace;">{{ case.name }}</h2>
         <div class="app">
             <img class="pointer" src="{% static 'IMG/pointer.png' %}" alt="">
@@ -58,11 +58,61 @@
                     <ul class="list"></ul>
                 </div>
             <button onclick="start()" class="start">Крутить</button>
+            <button onclick="check_balance()"> chek</button>
+    </div>
+    <div style="display: flex; justify-content: center;">
+        <h2 style="margin: 170px 0px 0px 0px; font-family:'Courier New', Courier, monospace; font-size: 40px;">YUTUQLAR</h2>
     </div>
     <div class="case-items-container">
         {% for cases in cases_items %}
         <div class="case-item">
             <img class="case-img" src="{{ cases.image.url }}">
+            <div class="case-item-gold">{{ cases.sell_gold }} G</div>
+
+            <div class="case-item-name-container">
+
+
+                {% if cases.category == 'Common' %}
+                    <div class="case-item-name grey-text">{{ cases.name }}</div>
+                {% elif cases.category == 'Uncommon' %}
+                    <div class="case-item-name light-blue-text">{{ cases.name }}</div>
+                {% elif cases.category == 'Rare' %}
+                    <div class="case-item-name blue-text">{{ cases.name }}</div>
+                {% elif cases.category == 'Epic' %}
+                    <div class="case-item-name violet-text">{{ cases.name }}</div>
+                {% elif cases.category == 'Legendary' %}
+                    <div class="case-item-name pink-text">{{ cases.name }}</div>
+                {% elif cases.category == 'Arcane' %}
+                    <div class="case-item-name red-text">{{ cases.name }}</div>
+                {% elif cases.category == 'Knife' %}
+                    <div class="case-item-name gold-text">{{ cases.name }}</div>
+                {% elif cases.category == 'Gloves' %}
+                    <div class="case-item-name gold-text">{{ cases.name }}</div>
+                {% elif cases.category == 'Gold' %}
+                    <div class="case-item-name gold-text">{{ cases.name }}</div>
+                {% endif %}
+
+
+                {% if cases.category == 'Common' %}
+                    <div class="case-item-quality-line grey"></div>
+                {% elif cases.category == 'Uncommon' %}
+                    <div class="case-item-quality-line light-blue"></div>
+                {% elif cases.category == 'Rare' %}
+                    <div class="case-item-quality-line blue"></div>
+                {% elif cases.category == 'Epic' %}
+                    <div class="case-item-quality-line violet"></div>
+                {% elif cases.category == 'Legendary' %}
+                    <div class="case-item-quality-line pink"></div>
+                {% elif cases.category == 'Arcane' %}
+                    <div class="case-item-quality-line red"></div>
+                {% elif cases.category == 'Knife' %}
+                    <div class="case-item-quality-line gold"></div>
+                {% elif cases.category == 'Gloves' %}
+                    <div class="case-item-quality-line gold"></div>
+                {% elif cases.category == 'Gold' %}
+                    <div class="case-item-quality-line gold"></div>
+                {% endif %}
+            </div>
         </div>
         {% endfor %}
     </div>
@@ -244,6 +294,30 @@ function FPSViewer() {
 
   setTimeout(arguments.callee, 15)
 }; FPSViewer()
+
+function check_balance() {
+    
+    // button = document.querySelector('.start')
+    // sum = {{ user.sum }}
+    // case_price = {{ case.price }}
+    // if( sum > case_price ) {
+    //     button.innerHTML = "kettu"
+    // } else{
+    //     button.innerHTML="yo"
+    // }
+    const responce = fetch('http://127.0.0.1:8000/main/balance_check/', {
+        headers: {
+        Accept: "application/json",
+        },
+    });
+    console.log()
+
+};
+
 </script>
+
+<script src="{% static 'js/scripts.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js"
+    integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
 
 

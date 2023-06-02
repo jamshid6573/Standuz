@@ -9,6 +9,10 @@ from django.contrib.auth.models import User
 from .forms import Update_balanseFORM
 from main.my_func import gold_com
 from users.forms import ImageChangeForm, ProfileChangeForm
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+
 
 def index(request):
     if request.user.is_authenticated:
@@ -28,6 +32,13 @@ def case_details(request, id):
         "cases_items": case_items
     }
     return render(request, 'case_details.html', context)
+
+@csrf_exempt
+def balance_check(request):
+    user_id = request.user.id
+    balance_sum = UsersAb.objects.get(id=user_id).sum
+    return JsonResponse({"sum":balance_sum})
+    
 
 
 def get_balans(request):
