@@ -29,7 +29,7 @@
 .app {
   position: relative;
   width: 100%;
-  background: #1b1f24;
+  background: #1c193d;
   border-radius: 10px;
   margin-top: 10rem;
 }
@@ -61,6 +61,7 @@
   height: 9rem;
   opacity: 0.5;
   transition: 0.3s ease;
+  border: 1px solid #8a5ce530;
 }
 .app .scope .list__item:nth-child(2n) {
   background: rgba(0, 0, 0, 0.1);
@@ -107,7 +108,7 @@
     align-items: center;
     padding-bottom: 30px;
     border-radius: 20px;
-    background-color: rgb(0 0 0 / 15%);
+    background-color: #1c193d;
     overflow: hidden;
     flex-wrap: wrap;
 }
@@ -212,30 +213,37 @@
 
 .red-text{
   color: #e52a5b;
+  border-bottom-color: #e52a5b;
 }
 
 .pink-text{
   color: #d766ed;
+  border-bottom-color: #d766ed;
 }
 
 .violet-text{
   color: #8a5ce5;
+  border-bottom-color: #8a5ce5;
 }
 
 .blue-text{
   color: #667fff;
+  border-bottom-color: #667fff;
 }
 
 .light-blue-text{
   color: #209dd2;
+  border-bottom-color: #209dd2;
 }
 
 .gold-text{
   color: #e7a800;
+  border-bottom-color: #e7a800;
 }
 
 .grey-text{
-  color: #544d64
+  color: #544d64;
+  border-bottom-color: #544d64
 }
 
 .case-item-gold{
@@ -245,4 +253,41 @@
   font-size: .75rem;
   color: #ffc259;
   font-weight: 900;
+}
+
+#shadow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.3;
+  display: none;
+}
+#message {
+  position: fixed;
+  top: 40px;
+  left: 10%;
+  right: 10%;
+  background: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  display: none;
+  margin-top: 12rem;
+  z-index: 2;
+}
+
+.button-close {
+    background-color: #ec5146;
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 6px;
+}
+
+.button-pay {
+    background-color: #1fb066;
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 6px;
 }

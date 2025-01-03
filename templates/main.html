@@ -42,7 +42,7 @@ display: flex;
 .card {
 padding: 2.5rem 2rem;
 border-radius: 10px;
-background-color: rgba(33,33,42,.74);
+background-color: #1c193d;
 max-width: 100%;
 box-shadow: 0 0 30px rgba(0, 0, 0, .15);
 margin: 1rem;
@@ -116,22 +116,16 @@ font-size: .75rem;
 font-family: 'Poppins', sans-serif;
 min-width: 140px;
 padding: .6rem;
-border: 1px solid #222;
+border: 1px solid transparent;
 border-radius: 5px;
 font-weight: bold;
 cursor: pointer;
 transition: all .25s linear;  
+background-color: #b3404a;
+color: #ffff;
 }
-.links .follow,
-.links .view:hover {
-background-color: #222;
-color: #FFF;
-}
-.links .view,
-.links .follow:hover{
-background-color: transparent;
-color: #222;
-}
+
+
 
 @media screen and (max-width: 450px) {
 .card {
@@ -140,9 +134,13 @@ color: #222;
 .infos {
   margin-left: 0;
   margin-top: 1.5rem;
+  text-align: center;
 }
 .links button {
   min-width: 100px;
+}
+.img123 {
+  text-align: -webkit-center;
 }
 }
 
@@ -152,19 +150,18 @@ color: #222;
   margin-top: 22px;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
-  background-color: white;
+  background-color: #b3404a;
   font-size:large;
+  border: none;
   border-radius: 7px;
-  color: black;
-  border-color: #222 ;
+  color: #ffff;
   border-width: 1px;
   
 }
 
-.Profil:hover{
-  background-color: #b3404a;
-  color: white;
-}
+
+
+
 
 
 /* 
@@ -343,7 +340,7 @@ color: #222;
 
 <div class="bod">
   <div class="card">
-      <div class="img">
+      <div class="img123">
         {% if user.image %}
           <img style="width: 150px; height: 150px;" src="{{user.image.url}}">
         {% else %}

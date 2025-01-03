@@ -1,0 +1,97 @@
+
+
+<!DOCTYPE html>
+<html lang="ru" prefix="og: https://ogp.me/ns#">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Orders</title>
+</head>
+
+<style>
+ .table {
+	width: 100%;
+	margin-bottom: 20px;
+	border: 3px solid #ffff;
+	border-top: 5px solid #fff;
+	border-bottom: 3px solid #fff;
+	border-collapse: collapse; 
+	font-size: 15px;
+	background: #131129; font-weight: 600;
+}
+.table th {
+	font-weight: bold;
+	padding: 7px;
+	background: #ffff;
+	border: none;
+	text-align: center;
+	font-size: 15px;
+	border-top: 3px solid #fff;
+	border-bottom: 3px solid #ffff;
+}
+.table td {
+	padding: 7px;
+	border: none;
+	border-bottom: 3px solid #ffff;
+	font-size: 15px;
+  text-align: center;
+}
+.table tbody {
+	background: #201a67;
+}
+.btn{
+    height: 50px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    color: #000;
+    font-weight: 700;
+    margin: 3px;
+}
+.btn:hover{
+    height: 50px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    color: #ffff;
+    font-weight: 700;
+    margin: 3px;
+
+}
+
+</style>
+
+<body style="background-color: #131129; color: #ffff;">
+  {% if user.is_superuser %}
+  <h1 style="text-align: center; margin: 50px;"> Orders</h1>
+  <table class="table">
+    <thead>
+      <tr style="color: #000;">
+        <th>ID</th>
+        <th>USERSNAME</th>
+        <th>AVATARKA</th>
+        <th>SKIN</th>
+        <th>GOLD</th>
+        <th>GOLD KOMISSIYA</th>
+        <th>SANA</th>
+        <th>NATIJA</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in orders %}
+      <tr>
+        <td>{{ order.id }}</td>
+        <td>{{ order.user.username }}</td>
+        <td>{% if order.user.image %}<img style="width: 100px; height: 100px;" src="{{ order.user.image.url }}" alt=""> {% else %} <div>yoq</div> {% endif %} </td>
+        <td>AKR NECROMANCER</td>
+        <td>1000</td>
+        <td>1251.17</td>
+        <td>03.04.2005</td>
+        <td><div style="display: inline-grid;"><button style="background-color:rgb(63, 224, 63);" class="btn">TAYYOR</button><button style="background-color: rgb(249, 25, 25);" class="btn">YOQ</button></div></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+      {% else %}
+      <h1 style="color: white;">404</h1>
+      {% endif %}
+</body>
+</html>

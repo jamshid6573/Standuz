@@ -1,349 +1,461 @@
-
 {% load static %}
 
+<link rel="stylesheet" href="{% static 'css/roulete.css' %}" />
+<link rel="stylesheet" href="{% static 'css/style.min.css' %}" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 
-<link rel="stylesheet" href="{% static 'css/roulete.css' %}">
-<link rel="stylesheet" href="{% static 'css/style.min.css' %}">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
-
-<style>
-
-</style>
+<style></style>
 
 <!-- <div class="preload"><canvas id="snow"></canvas>
 <div class="wrapper"> -->
-  <header id="header" class="header">
-      <div class="container">
-          <div class="header__wrapper"><a class="header__logo logo" href="{% url 'index' %}"><img style="width: 185px;" class="logo__img"
-                      src=" {% static 'img/svg/log.png' %} " alt="logo"> </a>  <a href="+++++++++++++" class="image-text">
-                          <!-- <div class="image-text__image">
-                           <img src={% static 'img/gold.png' %} height="90"  />
-                          </div>
-                          <div class="image-text__text">
-                           <h1 style="color:rgb(255, 217, 4); font-size: 50px;">{{ user.gold }}</h1>
-                          </div>
-                          <img style="margin-left: 10px ;" src={% static 'img/icons/plus.png' %} height="37"  /> -->
-                      </a> <a class="burger-btn"
-                  href="#"><span></span></a>
-              <nav class="menu">
-                  
-                  
-                  <ul class="menu__list" >
-                      
-                      <li class="menu__item"><a class="menu__link" href="{% url 'index' %}">ASOSIY</a></li>
-                      <li class="menu__item"><a class="menu__link" href="gold.html">GOLD</a></li>
-                      <!-- <li class="menu__item"><a class="menu__link" href="guarantees.html">GARANTIYA</a></li> -->
-                      <li class="menu__item"><a class="menu__link" href="reviews.html">OTZIVLAR</a></li>
-                      <li class="menu__item"><a class="menu__link" href="about.html">BIZ HAQIMIZDA</a></li>
-                      <li class="menu__item"><a class="menu__link" href="support.html">BIZ BILAN BOG'LANISH</a></li>
-                      <li class="menu__item"><a class="menu__link" href="{% url 'logout' %}">CHIQISH</a></li>
-                  </ul>
-              </nav>
-          </div>
-      </div>
-  </header>
-
-
-
-<div class="body1">
-    <div style="display:none" class="FPS">0</div>
-    <h2 style="text-align: center;
-    padding-top: 4rem;
-    font-size: 3rem;
-    font-family: monospace;">{{ case.name }}</h2>
-        <div class="app">
-            <img class="pointer" src="{% static 'IMG/pointer.png' %}" alt="">
-                <div class="scope">
-                    <ul class="list"></ul>
-                </div>
-            <button onclick="start()" class="start">Крутить</button>
-            <button onclick="check_balance()"> chek</button>
+<header id="header" class="header">
+  <div class="container">
+    <div class="header__wrapper">
+      <a class="header__logo logo" href="{% url 'index' %}"
+        ><img
+          style="width: 185px"
+          class="logo__img"
+          src=" {% static 'img/svg/log.png' %} "
+          alt="logo"/></a>
+          <button data-v-8e461e4d="" class="balance-button">{{user.sum}} SOM<svg data-v-8e461e4d="" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.65996 0.614682C6.01691 0.614682 6.30627 0.904045 6.30627 1.26099L6.30627 10.7402C6.30627 11.0972 6.01691 11.3865 5.65996 11.3865C5.30301 11.3865 5.01365 11.0972 5.01365 10.7402L5.01365 1.26099C5.01365 0.904045 5.30301 0.614682 5.65996 0.614682Z"></path><path d="M0.267594 6.0006C0.267595 5.64366 0.556958 5.35429 0.913906 5.35429L10.3931 5.35429C10.7501 5.35429 11.0394 5.64366 11.0394 6.0006C11.0394 6.35755 10.7501 6.64691 10.3931 6.64691L0.913905 6.64692C0.556958 6.64691 0.267595 6.35755 0.267594 6.0006Z"></path></svg></button>
+      <a class="burger-btn" href="#"><span></span></a>
+      <nav class="menu">
+        <ul class="menu__list">
+          <li class="menu__item">
+            <a class="menu__link" href="{% url 'index' %}">ASOSIY</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="gold.html">GOLD</a>
+          </li>
+          <!-- <li class="menu__item"><a class="menu__link" href="guarantees.html">GARANTIYA</a></li> -->
+          <li class="menu__item">
+            <a class="menu__link" href="{% url 'reviews' %}">OTZIVLAR</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="about.html">BIZ HAQIMIZDA</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="support.html">BIZ BILAN BOG'LANISH</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="{% url 'logout' %}">CHIQISH</a>
+          </li>
+        </ul>
+      </nav>
     </div>
-    <div style="display: flex; justify-content: center;">
-        <h2 style="margin: 170px 0px 0px 0px; font-family:'Courier New', Courier, monospace; font-size: 40px;">YUTUQLAR</h2>
-    </div>
-    <div class="case-items-container">
-        {% for cases in cases_items %}
-        <div class="case-item">
-            <img class="case-img" src="{{ cases.image.url }}">
-            <div class="case-item-gold">{{ cases.sell_gold }} G</div>
+  </div>
+</header>
 
-            <div class="case-item-name-container">
-
-
-                {% if cases.category == 'Common' %}
-                    <div class="case-item-name grey-text">{{ cases.name }}</div>
-                {% elif cases.category == 'Uncommon' %}
-                    <div class="case-item-name light-blue-text">{{ cases.name }}</div>
-                {% elif cases.category == 'Rare' %}
-                    <div class="case-item-name blue-text">{{ cases.name }}</div>
-                {% elif cases.category == 'Epic' %}
-                    <div class="case-item-name violet-text">{{ cases.name }}</div>
-                {% elif cases.category == 'Legendary' %}
-                    <div class="case-item-name pink-text">{{ cases.name }}</div>
-                {% elif cases.category == 'Arcane' %}
-                    <div class="case-item-name red-text">{{ cases.name }}</div>
-                {% elif cases.category == 'Knife' %}
-                    <div class="case-item-name gold-text">{{ cases.name }}</div>
-                {% elif cases.category == 'Gloves' %}
-                    <div class="case-item-name gold-text">{{ cases.name }}</div>
-                {% elif cases.category == 'Gold' %}
-                    <div class="case-item-name gold-text">{{ cases.name }}</div>
-                {% endif %}
-
-
-                {% if cases.category == 'Common' %}
-                    <div class="case-item-quality-line grey"></div>
-                {% elif cases.category == 'Uncommon' %}
-                    <div class="case-item-quality-line light-blue"></div>
-                {% elif cases.category == 'Rare' %}
-                    <div class="case-item-quality-line blue"></div>
-                {% elif cases.category == 'Epic' %}
-                    <div class="case-item-quality-line violet"></div>
-                {% elif cases.category == 'Legendary' %}
-                    <div class="case-item-quality-line pink"></div>
-                {% elif cases.category == 'Arcane' %}
-                    <div class="case-item-quality-line red"></div>
-                {% elif cases.category == 'Knife' %}
-                    <div class="case-item-quality-line gold"></div>
-                {% elif cases.category == 'Gloves' %}
-                    <div class="case-item-quality-line gold"></div>
-                {% elif cases.category == 'Gold' %}
-                    <div class="case-item-quality-line gold"></div>
-                {% endif %}
-            </div>
-        </div>
-        {% endfor %}
-    </div>
+<div id="shadow"></div>
+<div id="message">
+  <p>
+    как сделать всплывающее окно как в MyStat, компьютерная академия шаг, пример
+    прикреплю снизу
+  </p>
+  <div style="margin-top: 1rem" class="row">
+    <button style="width: 40%; height: 3rem" class="button-close">
+      Orqaga
+    </button>
+    <button style="width: 40%; height: 3rem" class="button-pay">
+      Toldirish
+    </button>
+  </div>
 </div>
 
+<div class="body1">
+  <!-- <div style="display:none" class="FPS">0</div> -->
+  <h2
+    style="
+      text-align: center;
+      padding-top: 4rem;
+      font-size: 3rem;
+      font-family: monospace;
+    "
+  >
+    {{ case.name }}
+  </h2>
+  <div class="app">
+    <!-- <img class="pointer" src="{% static 'IMG/pointer.png' %}" alt="" /> -->
+    <div style="border-left: 2px solid green;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    margin-left: -3px;
+    top: 0;"></div>
+    <div class="scope">
+      <ul class="list"></ul>
+    </div>
+    <button onclick="check_balance()" class="start">Крутить</button>
+  </div>
+  <div style="display: flex; justify-content: center">
+    <h2
+      style="
+        margin: 170px 0px 0px 0px;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 40px;
+      "
+    >
+      YUTUQLAR
+    </h2>
+  </div>
+  <div class="case-items-container">
+    {% for cases in cases_items %}
+    <div class="case-item">
+      <img class="case-img" src="{{ cases.image.url }}" />
+      <div class="case-item-gold">{{ cases.sell_gold }} G</div>
 
-
-
+      <div class="case-item-name-container">
+        {% if cases.category == 'Common' %}
+        <div class="case-item-name grey-text">{{ cases.name }}</div>
+        {% elif cases.category == 'Uncommon' %}
+        <div class="case-item-name light-blue-text">{{ cases.name }}</div>
+        {% elif cases.category == 'Rare' %}
+        <div class="case-item-name blue-text">{{ cases.name }}</div>
+        {% elif cases.category == 'Epic' %}
+        <div class="case-item-name violet-text">{{ cases.name }}</div>
+        {% elif cases.category == 'Legendary' %}
+        <div class="case-item-name pink-text">{{ cases.name }}</div>
+        {% elif cases.category == 'Arcane' %}
+        <div class="case-item-name red-text">{{ cases.name }}</div>
+        {% elif cases.category == 'Knife' %}
+        <div class="case-item-name gold-text">{{ cases.name }}</div>
+        {% elif cases.category == 'Gloves' %}
+        <div class="case-item-name gold-text">{{ cases.name }}</div>
+        {% elif cases.category == 'Gold' %}
+        <div class="case-item-name gold-text">{{ cases.name }}</div>
+        {% endif %} {% if cases.category == 'Common' %}
+        <div class="case-item-quality-line grey"></div>
+        {% elif cases.category == 'Uncommon' %}
+        <div class="case-item-quality-line light-blue"></div>
+        {% elif cases.category == 'Rare' %}
+        <div class="case-item-quality-line blue"></div>
+        {% elif cases.category == 'Epic' %}
+        <div class="case-item-quality-line violet"></div>
+        {% elif cases.category == 'Legendary' %}
+        <div class="case-item-quality-line pink"></div>
+        {% elif cases.category == 'Arcane' %}
+        <div class="case-item-quality-line red"></div>
+        {% elif cases.category == 'Knife' %}
+        <div class="case-item-quality-line gold"></div>
+        {% elif cases.category == 'Gloves' %}
+        <div class="case-item-quality-line gold"></div>
+        {% elif cases.category == 'Gold' %}
+        <div class="case-item-quality-line gold"></div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
 
 <footer class="footer">
   <div class="footer__top">
-      <div class="container">
-          <div class="footer__row row">
-              <article class="footer__col col-6 col-md-12">
-                  <div class="footer-about"><a class="footer-about__logo logo" href="index.html"><img
-                              class="logo__img" src=" {% static 'img/svg/logo.svg' %} " alt="logo"></a>
-                      <p class="footer-about__text">Stand Service – это мощная команда бустеров, про-игроков и
-                          просто любителей игры Standoff 2. В нашем арсенале новейшие технологии, любовь к
-                          своему делу и многолетний опыт. Мы знаем, с чем имеем дело. И мы знаем, как Вам
-                          помочь.</p>
-                      <ul class="footer-about__list">
-                          <li class="footer-about__item"><a class="footer-about__link" target="_blank"
-                                  href="https://t.me/middlebooster">Сотрудничество с нами</a></li>
-                          <li class="footer-about__item"><a class="footer-about__link"
-                                  href="agreement.html">Пользовательское соглашение</a></li>
-                      </ul>
-                  </div>
-              </article>
-              <article class="footer__col col-2 col-md-12">
-                  <div class="footer-menu">
-                      <h5 class="footer-title">МЕНЮ</h5>
-                      <ul class="footer-menu__list">
-                          <li class="footer-menu__item"><a class="footer-menu__link"
-                                  href="index.html">ГЛАВНАЯ</a></li>
-                          <li class="footer-menu__item"><a class="footer-menu__link"
-                                  href="gold.html">ГОЛДА</a></li>
-                          <li class="footer-menu__item"><a class="footer-menu__link"
-                                  href="boosting.html">БУСТИНГ</a></li>
-                          <li class="footer-menu__item"><a class="footer-menu__link"
-                                  href="guarantees.html">ГАРАНТИИ</a></li>
-                          <li class="footer-menu__item"><a class="footer-menu__link"
-                                  href="reviews.html">ОТЗЫВЫ</a></li>
-                          <li class="footer-menu__item"><a class="footer-menu__link" href="about.html">О
-                                  НАС</a></li>
-                          <li class="footer-menu__item"><a class="footer-menu__link"
-                                  href="support.html">ПОДДЕРЖКА</a></li>
-                      </ul>
-                  </div>
-              </article>
-              <article class="footer__col col-4 col-md-12">
-                  <div class="footer-widget">
-                      <h5 class="footer-title">TELEGRAM</h5><iframe id="tgw_619f2beeeea51566507f0513"
-                          frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no"
-                          width="100%" height="350px" async></iframe>
-                  </div>
-              </article>
+    <div class="container">
+      <div class="footer__row row">
+        <article class="footer__col col-6 col-md-12">
+          <div class="footer-about">
+            <a class="footer-about__logo logo" href="index.html"
+              ><img
+                class="logo__img"
+                src=" {% static 'img/svg/logo.svg' %} "
+                alt="logo"
+            /></a>
+            <p class="footer-about__text">
+              Stand Service – это мощная команда бустеров, про-игроков и просто
+              любителей игры Standoff 2. В нашем арсенале новейшие технологии,
+              любовь к своему делу и многолетний опыт. Мы знаем, с чем имеем
+              дело. И мы знаем, как Вам помочь.
+            </p>
+            <ul class="footer-about__list">
+              <li class="footer-about__item">
+                <a
+                  class="footer-about__link"
+                  target="_blank"
+                  href="https://t.me/middlebooster"
+                  >Сотрудничество с нами</a
+                >
+              </li>
+              <li class="footer-about__item">
+                <a class="footer-about__link" href="agreement.html"
+                  >Пользовательское соглашение</a
+                >
+              </li>
+            </ul>
           </div>
+        </article>
+        <article class="footer__col col-2 col-md-12">
+          <div class="footer-menu">
+            <h5 class="footer-title">МЕНЮ</h5>
+            <ul class="footer-menu__list">
+              <li class="footer-menu__item">
+                <a class="footer-menu__link" href="index.html">ГЛАВНАЯ</a>
+              </li>
+              <li class="footer-menu__item">
+                <a class="footer-menu__link" href="gold.html">ГОЛДА</a>
+              </li>
+              <li class="footer-menu__item">
+                <a class="footer-menu__link" href="boosting.html">БУСТИНГ</a>
+              </li>
+              <li class="footer-menu__item">
+                <a class="footer-menu__link" href="guarantees.html">ГАРАНТИИ</a>
+              </li>
+              <li class="footer-menu__item">
+                <a class="footer-menu__link" href="{% url 'reviews' %}">ОТЗЫВЫ</a>
+              </li>
+              <li class="footer-menu__item">
+                <a class="footer-menu__link" href="about.html">О НАС</a>
+              </li>
+              <li class="footer-menu__item">
+                <a class="footer-menu__link" href="support.html">ПОДДЕРЖКА</a>
+              </li>
+            </ul>
+          </div>
+        </article>
+        <article class="footer__col col-4 col-md-12">
+          <div class="footer-widget">
+            <h5 class="footer-title">TELEGRAM</h5>
+            <iframe
+              id="tgw_619f2beeeea51566507f0513"
+              frameborder="0"
+              scrolling="no"
+              horizontalscrolling="no"
+              verticalscrolling="no"
+              width="100%"
+              height="350px"
+              async
+            ></iframe>
+          </div>
+        </article>
       </div>
+    </div>
   </div>
   <div class="footer__bottom">
-      <div class="container">
-          <div class="footer-box">
-              <div class="footer-box__item">
-                  <p class="footer-box__copyright-text">⚡<a href="index.html">STAND-SERVICE.RU</a> © 2019-2022
-                  </p>
-              </div>
-              <div class="footer-box__item">
-                  <ul class="footer-box__icons-list">
-                      <li class="footer-box__icons-item"><a class="icon-vk" target="_blank"
-                              href="https://vk.com/oldbooster"></a></li>
-                      <li class="footer-box__icons-item"><a class="icon-tg" target="_blank"
-                              href="https://t.me/stand_service"></a></li>
-                      <li class="footer-box__icons-item"><a class="icon-yt" target="_blank"
-                              href="https://www.youtube.com/channel/UCrjLG44uv713SOCcIKYpm9w/featured"></a>
-                      </li>
-                  </ul>
-              </div>
-          </div>
+    <div class="container">
+      <div class="footer-box">
+        <div class="footer-box__item">
+          <p class="footer-box__copyright-text">
+            ⚡<a href="index.html">STAND-SERVICE.RU</a> © 2019-2022
+          </p>
+        </div>
+        <div class="footer-box__item">
+          <ul class="footer-box__icons-list">
+            <li class="footer-box__icons-item">
+              <a
+                class="icon-vk"
+                target="_blank"
+                href="https://vk.com/oldbooster"
+              ></a>
+            </li>
+            <li class="footer-box__icons-item">
+              <a
+                class="icon-tg"
+                target="_blank"
+                href="https://t.me/stand_service"
+              ></a>
+            </li>
+            <li class="footer-box__icons-item">
+              <a
+                class="icon-yt"
+                target="_blank"
+                href="https://www.youtube.com/channel/UCrjLG44uv713SOCcIKYpm9w/featured"
+              ></a>
+            </li>
+          </ul>
+        </div>
       </div>
+    </div>
   </div>
 </footer>
 
-
-
 <script>
-    const cells = 31
+      const cells = 31
 
-// From 0.001 to 100
-const items = [
-{% for i in cases_items %}
-  {name: '{{ i.name }}', img: '{{ i.image.url }}', chance: {{i.chance}}},
-{% endfor %}
-]
+  // From 0.001 to 100
+  const items = [
+  {% for i in cases_items %}
+    {id: {{i.id}}, name: '{{ i.name }}', img: '{{ i.image.url }}', chance: {{i.chance}}},
+  {% endfor %}
+  ]
 
-function getItem() {
-  // let item;
+  function getItem() {
+    // let item;
 
-  // while (!item) {
-  //   const chance = Math.floor(Math.random() * 100000)
-    
-  //   items.forEach(elm => {
-  //     if (chance < elm.chance && !item) item = elm
-  //   })
-  // }
-  
-  var randomItem = items[Math.floor(Math.random()*items.length)];
+    // while (!item) {
+    //   const chance = Math.floor(Math.random() * 100000)
 
-  return randomItem
-}
-
-function generateItems() {
-  document.querySelector('.list').remove()
-  document.querySelector('.scope').innerHTML = `
-    <ul class="list"></ul>
-  `
-  
-  const list = document.querySelector('.list')
-
-  for (let i = 0; i < cells; i++) {
-    const item = getItem()
-    
-    const li = document.createElement('li')
-    li.setAttribute('data-item', JSON.stringify(item))
-    li.classList.add('list__item')
-    li.innerHTML = `
-      <img src="${item.img}" alt="" />
-    `
-
-    list.append(li)
-  }
-}
-
-generateItems()
-
-let isStarted = false
-let isFirstStart = true
-
-function start() {
-  // if (isStarted) return
-  // else isStarted = true
-  
-
-  if (!isFirstStart) generateItems()
-  else isFirstStart = false
-  const list = document.querySelector('.list')
-
-  setTimeout(() => {
-    list.style.left = '50%'
-    list.style.transform = 'translate3d(-72%, 0, 0)'
-  }, 0)
-
-  
-  const item = list.querySelectorAll('li')[22]
-  const data = JSON.parse(item.getAttribute('data-item'))
-  console.log(data.chance)
-
-  // если шанс равен Х - перезапустить рулетку
-  if (data.chance == 4) start()
-
-  list.addEventListener('transitionend', () => {
-    isStarted = false
-    item.classList.add('active')
-    const data = JSON.parse(item.getAttribute('data-item'))
-    
-    console.log(data);
-  }, {once: true})
-}
-
-let FPSCounter = 0
-function FPSIncrementer() {
-  FPSCounter++
-
-  requestAnimationFrame(arguments.callee)
-}; FPSIncrementer()
-
-function FPSViewer() {
-  document.querySelector('.FPS').innerHTML = FPSCounter * 2
-  FPSCounter = 0
-
-  setTimeout(arguments.callee, 15)
-}; FPSViewer()
-
-function check_balance() {
-
-    const case_price = '{{ case.price }}'
-    
-    // button = document.querySelector('.start')
-    // sum = {{ user.sum }}
-    // case_price = {{ case.price }}
-    // if( sum > case_price ) {
-    //     button.innerHTML = "kettu"
-    // } else{
-    //     button.innerHTML="yo"
+    //   items.forEach(elm => {
+    //     if (chance < elm.chance && !item) item = elm
+    //   })
     // }
 
-  
-         $.ajax({
-        url: "http://127.0.0.1:8000/main/balance_check/",
-        type: "GET",
-        headers: {
-         Accept: "application/json",
-         },
-        success: function (data) {
-            sum = data['sum']
-            if (parseFloat(case_price) <= parseFloat(sum)) {
-                $.ajax(
-                    {
-                        url: "http://127.0.0.1:8000/main/balance_check/",
-                        type: "POST",
-                        headers: {
-                        Accept: "application/json",
-                        },
-                        data: {"case_price": parseFloat('{{ case.price }}') },
-                        success: function (data) {
-                            start()
-                            
-                        }
-                    }
-                )
-            } else {
-                console.log("pul yetmayapdi");
-            };
-        }, 
-    });
+    var randomItem = items[Math.floor(Math.random()*items.length)];
 
-};
+    return randomItem
+  }
 
+  function generateItems() {
+    document.querySelector('.list').remove()
+    document.querySelector('.scope').innerHTML = `
+      <ul class="list"></ul>
+    `
+
+    const list = document.querySelector('.list')
+
+    for (let i = 0; i < cells; i++) {
+      const item = getItem()
+
+      const li = document.createElement('li')
+      li.setAttribute('data-item', JSON.stringify(item))
+      li.classList.add('list__item')
+      li.innerHTML = `
+        <img src="${item.img}" alt="" />
+      `
+
+      list.append(li)
+    }
+  }
+
+  generateItems()
+
+  // let isStarted = false
+  // let isFirstStart = true
+
+  function start() {
+      generateItems()
+  //   if (isStarted) return
+  //   else isStarted = true
+
+
+  //   if (!isFirstStart) generateItems()
+  //   else isFirstStart = false
+    const list = document.querySelector('.list')
+
+    const left = ["48%", "49%", "50%", "51%", "52%", "53%", "54%"]
+
+    setTimeout(() => {
+      list.style.left = left[Math.floor(Math.random()*left.length)];
+      list.style.transform = 'translate3d(-73%, 0, 0)'
+    }, 50)
+
+
+    const item = list.querySelectorAll('li')[22]
+    const data = JSON.parse(item.getAttribute('data-item'))
+    console.log(data.chance)
+
+    // если шанс равен Х - перезапустить рулетку
+  //   if (data.chance == 4) start()
+
+    list.addEventListener('transitionend', () => {
+      // isStarted = false
+      item.classList.add('active')
+      const data = JSON.parse(item.getAttribute('data-item'))
+
+      console.log(data);
+
+      fetch("{% url 'balance_check' %}", {
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => document.querySelector('.balance-button').innerHTML = data['sum'] + ' ' + 'SOM<svg data-v-8e461e4d="" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.65996 0.614682C6.01691 0.614682 6.30627 0.904045 6.30627 1.26099L6.30627 10.7402C6.30627 11.0972 6.01691 11.3865 5.65996 11.3865C5.30301 11.3865 5.01365 11.0972 5.01365 10.7402L5.01365 1.26099C5.01365 0.904045 5.30301 0.614682 5.65996 0.614682Z"></path><path d="M0.267594 6.0006C0.267595 5.64366 0.556958 5.35429 0.913906 5.35429L10.3931 5.35429C10.7501 5.35429 11.0394 5.64366 11.0394 6.0006C11.0394 6.35755 10.7501 6.64691 10.3931 6.64691L0.913905 6.64692C0.556958 6.64691 0.267595 6.35755 0.267594 6.0006Z"></path></svg>');
+    }, {once: true});
+
+    return data
+
+  };
+
+  // let FPSCounter = 0
+  // function FPSIncrementer() {
+  //   FPSCounter++
+
+  //   requestAnimationFrame(arguments.callee)
+  // }; FPSIncrementer()
+
+  // function FPSViewer() {
+  //   document.querySelector('.FPS').innerHTML = FPSCounter * 2
+  //   FPSCounter = 0
+
+  //   setTimeout(arguments.callee, 15)
+  // }; FPSViewer()
+
+  function check_balance() {
+
+      const case_price = '{{ case.price }}'
+
+      // button = document.querySelector('.start')
+      // sum = {{ user.sum }}
+      // case_price = {{ case.price }}
+      // if( sum > case_price ) {
+      //     button.innerHTML = "kettu"
+      // } else{
+      //     button.innerHTML="yo"
+      // }
+
+
+           $.ajax({
+          url: "{% url 'balance_check' %}",
+          type: "GET",
+          headers: {
+           Accept: "application/json",
+           },
+          success: function (data) {
+              sum = data['sum']
+              // document.querySelector('.balans-test').innerHTML = sum
+              if (parseFloat(case_price) <= parseFloat(sum)) {
+                  $.ajax(
+                      {
+                          url: "{% url 'balance_check' %}",
+                          type: "POST",
+                          headers: {
+                          Accept: "application/json",
+                          },
+                          data: {"case_price": parseFloat('{{ case.price }}') },
+                           success: function () {
+                               const skin = start()
+                               $.ajax(
+                                    {
+                                        url: "{% url 'inventory' %}",
+                                        type: "POST",
+                                        headers: {
+                                        Accept: "application/json",
+                                        },
+                                        data: {'item': skin},
+                                        success: function () {
+                                            console.log("added")
+                                            
+                                        }
+                                    }
+                                )
+                          }
+                      }
+                  )
+              } else {
+                  document.querySelector('.start').addEventListener('click', _ => {
+                      const os = document.querySelector('#shadow')
+                      os.style.display = 'block'
+                      const om = document.querySelector('#message')
+                      om.style.display = 'block'
+                      const close = document.querySelector('.button-close')
+                      close.addEventListener('click', _ => {
+                          os.style.display = 'none'
+                          om.style.display = 'none'
+                      }, {once: true})
+                      os.addEventListener('click', _ => {
+                          os.style.display = 'none'
+                          om.style.display = 'none'
+                      }, {once: true})
+                  });
+              };
+          },
+      });
+
+  };
 </script>
 
 <script src="{% static 'js/scripts.min.js' %}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js"
-    integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
-
-
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js"
+  integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco="
+  crossorigin="anonymous"
+></script>

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
     <link rel="stylesheet" href="{% static 'css/profile2.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/roulete.css' %}"> -->
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
  
@@ -91,6 +92,41 @@
     width: 100%;
     margin-top: 15px;
     color: #ffff;
+}
+
+.red-text{
+  color: #e52a5b;
+  border-bottom-color: #e52a5b;
+}
+
+.pink-text{
+  color: #d766ed;
+  border-bottom-color: #d766ed;
+}
+
+.violet-text{
+  color: #8a5ce5;
+  border-bottom-color: #8a5ce5;
+}
+
+.blue-text{
+  color: #667fff;
+  border-bottom-color: #667fff;
+}
+
+.light-blue-text{
+  color: #209dd2;
+  border-bottom-color: #209dd2;
+}
+
+.gold-text{
+  color: #e7a800;
+  border-bottom-color: #e7a800;
+}
+
+.grey-text{
+  color: #544d64;
+  border-bottom-color: #544d64
 }
  </style>
 
@@ -272,7 +308,7 @@
                         </div>
                         <div class="user-tabs__sell-btn-wrapper"><button
                                 class="user-tabs__sell-btn icon_dop__menu sell_all_btn"
-                                style="background-color: rgb(212, 70, 70);"> Продать все </button></div>
+                                style="background-color: rgb(212, 70, 70);" onclick="sell_all()">Hammasini sotish</button></div>
                         <div class="user-tabs__sell-btn-wrapper"><button
                                 class="user-tabs__sell-btn icon_dop__menu send_item_users"
                                 style="background-color: rgb(243, 164, 93);"> Передать скин </button></div>
@@ -292,19 +328,120 @@
                 <div class="orders" data-v-3f78fa57="">
                     <ul class="items orders__list"></ul><!---->
                     <div class="error__block_info" data-v-71ec44b8="">
-                        <div class="error_wrapper" data-v-71ec44b8="">
-                            <div class="error_err__circle" data-v-71ec44b8="">
-                                <div class="error_err__circle-inner" data-v-71ec44b8="">
-                                    <div class="error_err__circle-image" data-v-71ec44b8=""><img class="error_err__img"
-                                            src="https://cdn.so2baza.ru/assets/images/error.png"
-                                            alt="Больше нет информации" data-v-71ec44b8=""></div>
+                        <div class="cases">
+                            <div class="cases-block">
+                                <h2 class="casesTEXT">INVENTAR</h2>
+                                <div class="case-links-container">
+                                    {% for item in items %}
+                                        {% if item.category == 'Common' %}
+                                        <a style="border: 0px solid;
+                                        border-bottom-width: 11px;
+                                        border-bottom-left-radius: 10px;
+                                        border-bottom-right-radius: 10px;" class="caseurl1 grey-text">
+                                         <div class="case-price1">{{ item.sell_gold }} G</div> 
+                                        <img class="case-image" src="{{item.image.url}}" alt="">
+                                            <div class="case-name grey-text">{{item.name}}</div>
+                                            <button id="{{ item.id }}" class="case-price" onclick="sellitem(this)" >SOTISH</button>
+                                            
+                                            
+                                        </a>
+                                        {% elif item.category == 'Uncommon' %}
+                                        <a style="border: 0px solid;
+                                        border-bottom-width: 11px;
+                                        border-bottom-left-radius: 10px;
+                                        border-bottom-right-radius: 10px;" class="caseurl1 light-blue-text">
+                                        <div class="case-price1">{{ item.sell_gold }} G</div> 
+                                         <img class="case-image" src="{{item.image.url}}" alt="">
+                                            <div class="case-name light-blue-text">{{item.name}}</div>
+                                            <button id="{{ item.id }}" class="case-price" onclick="sellitem(this)" >SOTISH</button>
+                                            
+                                        </a>
+                                        {% elif item.category == 'Rare' %}
+                                        <a style="border: 0px solid;
+                                        border-bottom-width: 11px;
+                                        border-bottom-left-radius: 10px;
+                                        border-bottom-right-radius: 10px;" class="caseurl1 blue-text">
+                                         <div class="case-price1">{{ item.sell_gold }} G</div> 
+                                        <img class="case-image" src="{{item.image.url}}" alt="">
+                                            <div class="case-name blue-text">{{item.name}}</div>
+                                            <button id="{{ item.id }}" class="case-price" onclick="sellitem(this)" >SOTISH</button>
+                                            
+                                        </a>
+                                        {% elif item.category == 'Epic' %}
+                                        <a style="border: 0px solid;
+                                        border-bottom-width: 11px;
+                                        border-bottom-left-radius: 10px;
+                                        border-bottom-right-radius: 10px;" class="caseurl1 violet-text">
+                                        <div class="case-price1">{{ item.sell_gold }} G</div> 
+                                         <img class="case-image" src="{{item.image.url}}" alt="">
+                                            <div class="case-name violet-text">{{item.name}}</div>
+                                            <button id="{{ item.id }}" class="case-price" onclick="sellitem(this)" >SOTISH</button>
+                                            
+                                            
+                                        </a>
+                                        {% elif item.category == 'Legendary' %}
+                                        <a style="border: 0px solid;
+                                        border-bottom-width: 11px;
+                                        border-bottom-left-radius: 10px;
+                                        border-bottom-right-radius: 10px;" class="caseurl1 pink-text">
+                                         <div class="case-price1">{{ item.sell_gold }} G</div> 
+                                        <img class="case-image" src="{{item.image.url}}" alt="">
+                                            <div class="case-name pink-text">{{item.name}}</div>
+                                            <button id="{{ item.id }}" class="case-price" onclick="sellitem(this)" >SOTISH</button>
+                                            
+                                        </a>
+                                        {% elif item.category == 'Arcane' %}
+                                        <a style="border: 0px solid;
+                                        border-bottom-width: 11px;
+                                        border-bottom-left-radius: 10px;
+                                        border-bottom-right-radius: 10px;" class="caseurl1 red-text">
+                                          <div class="case-price1">{{ item.sell_gold }} G</div> 
+                                            <img class="case-image" src="{{item.image.url}}" alt="">
+                                            <div class="case-name red-text">{{item.name}}</div>
+                                            <button id="{{ item.id }}" class="case-price" onclick="sellitem(this)" >SOTISH</button>
+                                            
+                                        </a>
+                                        {% elif item.category == 'Knife' %}
+                                        <a style="border: 0px solid;
+                                        border-bottom-width: 11px;
+                                        border-bottom-left-radius: 10px;
+                                        border-bottom-right-radius: 10px;" class="caseurl1 gold-text">
+                                         <div class="case-price1">{{ item.sell_gold }} G</div> 
+                                        <img class="case-image" src="{{item.image.url}}" alt="">
+                                            <div class="case-name gold-text">{{item.name}}</div>
+                                            <button id="{{ item.id }}" class="case-price" onclick="sellitem(this)" >SOTISH</button>
+                                            
+                                        </a>
+                                        {% elif item.category == 'Gloves' %}
+                                        <a style="border: 0px solid;
+                                        border-bottom-width: 11px;
+                                        border-bottom-left-radius: 10px;
+                                        border-bottom-right-radius: 10px;" class="caseurl1 gold-text">
+                                         <div class="case-price1">{{ item.sell_gold }} G</div> 
+                                        <img class="case-image" src="{{item.image.url}}" alt="">
+                                            <div class="case-name gold-text">{{item.name}}</div>
+                                            <button id="{{ item.id }}" class="case-price" onclick="sellitem(this)" >SOTISH</button>
+                                            
+                                        </a>
+                                        {% elif item.category == 'Gold' %}
+                                        <a style="border: 0px solid;
+                                        border-bottom-width: 11px;
+                                        border-bottom-left-radius: 10px;
+                                        border-bottom-right-radius: 10px;" class="caseurl1 gold-text">
+                                         <div class="case-price1">{{ item.sell_gold }} G</div> 
+                                        <img class="case-image" src="{{item.image.url}}" alt="">
+                                            <div class="case-name gold-text">{{item.name}}</div>
+                                            <button id="{{ item.id }}" class="case-price" onclick="sellitem(this)" >SOTISH</button>
+                                            
+                                        </a>
+                                        {% endif %}
+                                    {% endfor %}
                                 </div>
                             </div>
-                            <div class="error_err__text" data-v-71ec44b8="">Больше нет информации</div>
                         </div>
                     </div>
                     <div class="load" data-v-563616d1=""></div>
-                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -429,6 +566,38 @@ var first_name = document.getElementById("id_first_name").setAttribute('value', 
 var last_name = document.getElementById("id_last_name").setAttribute('value', '{{ user.last_name }}')
 var number = document.getElementById("id_number").setAttribute('value', '{{ user.number }}')
 var tg = document.getElementById("id_tg").setAttribute('value', '{{ user.tg }}')
+
+function sellitem(obj) {
+    $.ajax(
+        {
+            url: "{% url 'sell_item' %}",
+            type: "POST",
+            headers: {
+            Accept: "application/json",
+                },
+            data: {'id': obj.id},
+            success: function () {
+                console.log("succes")
+                location.reload()
+                }
+        }
+    )
+}
+
+function sell_all() {
+    $.ajax(
+        {
+            url: "{% url 'sell_all' %}",
+            type: "GET",
+            headers: {
+            Accept: "application/json",
+            },
+            success : function () {
+                location.reload()
+            }
+        }
+    )
+}
 
 
       </script>

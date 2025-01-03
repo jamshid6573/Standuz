@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Gold sotib olish
+{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block content %}
+<section class="features-purchase">
+    <div style="margin-top: 50px;" class="container">
+        <h2 class="features-purchase__title title">КУПИТЬ ИГРОВУЮ <strong>ВАЛЮТУ</strong></h2>
+        <div class="features">
+            <article class="features__col">
+                <div class="features__box"><i class="features__icon icon-check"></i>
+                    <h4 class="features__title">КОНТРОЛЬ <strong>БЕЗОПАСНОСТИ</strong></h4>
+                    <p class="features__text">Мы продаем «чистую» голду, которая ранее покупалась в
+                        игре, поэтому мы можем гарантировать Вам безопасность.</p>
+                </div>
+            </article>
+            <article class="features__col">
+                <div class="features__box"><i class="features__icon icon-rocket"></i>
+                    <h4 class="features__title">БЫСТРЫЙ <strong>ВЫВОД</strong></h4>
+                    <p class="features__text">Ваш предмет на рынке будет искать специальный скрипт,
+                        который ускоряет вывод голды в несколько раз.</p>
+                </div>
+            </article>
+            <article class="features__col">
+                <div class="features__box"><i class="features__icon icon-holding"></i>
+                    <h4 class="features__title">ЛУЧШАЯ <strong>ЦЕНА</strong></h4>
+                    <p class="features__text">Мы продаем голду по курсу 0.63 ₽, это означает, что Вы
+                        можете купить голду намного дешевле, чем в игре.</p>
+                </div>
+            </article>
+            <article class="features__col">
+                <div class="features__box"><i class="features__icon icon-support2"></i>
+                    <h4 class="features__title">ПОДДЕРЖКА <strong>24/7</strong></h4>
+                    <p class="features__text">Нужна помощь в покупке голды? Консультант в чате поможет
+                        Вам и проконсультирует по любому вопросу.</p>
+                </div>
+            </article>
+            <div class="features__col">
+                <div class="features__wrapper-img"><img class="features__img" src={% static 'img/gold.png' %}
+                        alt="gold"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<div class="divider"></div>
+<section class="converter section">
+    <div class="container">
+        <div style="width: auto;" class="col-6 ">
+            <div class="rate">
+                <h5 style="color: #ffff" class="rate__title">GOLD SOTIB OLISH</h5><input id="rate__input_buy" class="rate__input input"
+                    maxlength="7" placeholder="Gold sonini kiriting:" onkeypress="validate(event)"
+                    oninput="rate_input_buy(this.value)">
+                <div class="rate__oninput-wrapper oninput-wrapper">
+                    <div class="rate__oninput oninput"><span id="rate__oninput_buy">0</span> <span>SOM</span> Boladi
+                    </div>
+                    <div class="rate__oninput oninput">С комиссией: <span
+                            id="rate__oninput_buy-percent">0.00</span><span>G</span></div>
+                </div><button onclick=modalopen() style="border: none;"  class="rate__btn main-btn popup-link" href="gold.html#popup-04">Купить</button>
+            </div>
+        </div>
+    </div>
+    <div id="popup-04" class="popup">
+        <div class="popup__wrapper">
+            <div class="popup__content"><a onclick="modalclose()" id="closepopup" class="popup__close close-popup"></a>
+                <h2 class="popup__title title">Выберите продавца:</h2><a class="popup__btn main-btn" target="_blank"
+                    href="https://t.me/victor_fedorov">Виктор Федоров</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="reviews-customer">
+{% endblock %}
+
+{% block script %}
+<script>
+    function modalopen() {
+        document.querySelector('.popup').style.visibility = 'visible'
+        document.querySelector('.popup').style.opacity = '1'
+    };
+
+    function modalclose() {
+        document.querySelector('.popup').style ='0'
+    }
+</script>
+{% endblock %}

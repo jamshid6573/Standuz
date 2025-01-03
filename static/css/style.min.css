@@ -185,7 +185,8 @@ body {
     -webkit-animation: .3s linear fade-in;
     -moz-animation: .3s linear fade-in;
     -o-animation: .3s linear fade-in;
-    background: #0b0d26 url(https://cdn.so2baza.ru/images/background3.jpg) no-repeat 100% 0;
+    /* background: #0b0d26 url(https://cdn.so2baza.ru/images/background3.jpg) no-repeat 100% 0; */
+    background-color: #131129;
     background-attachment: fixed;
     background-size: cover;
     transition: all .35s ease-in-out;
@@ -622,7 +623,7 @@ body.lock {
     z-index: 10;
     position: -webkit-sticky;
     position: sticky;
-    background-color: #0d131f;
+    background-color: #1c193d;
     -webkit-box-shadow: 0 1px 20px 0 rgba(0, 0, 0, .3);
     box-shadow: 0 1px 20px 0 rgba(0, 0, 0, .3)
 }
@@ -1203,7 +1204,7 @@ body.lock {
 
 .footer {
     padding-top: 100px;
-    background-color: #1b1c29;
+    background-color: #1c193d;
     color: #ccc;
     font-size: 14px
 }
@@ -2786,4 +2787,156 @@ body.lock {
 
     }
 
+    .balance-button[data-v-8e461e4d] {
+        cursor: pointer;
+        height: 36px;
+        margin: 0 25px;
+        padding: 5px 20px;
+        border-radius: 10px;
+        background-color: #2d2a4f;
+        border: none;
+        outline: none!important;
+        font-size: .875rem;
+        font-weight: 500;
+        color: #ffc259;
+        transition: .25s;
+    }
+    
+    .balance-button[data-v-8e461e4d]:hover {
+        background-color: #363360
+    }
+    
+    .balance-button[data-v-8e461e4d]:active {
+        background-color: #403c70
+    }
+    
+    @media screen and (max-width: 800px) {
+        .balance-button[data-v-8e461e4d] {
+            margin:0
+        }
+    }
+    
+    .balance-button svg[data-v-8e461e4d] {
+        width: 12px;
+        margin-left: 5px;
+        fill: #e3e3e5;
+        transform: translateY(1px)
+    }
 
+    .cases {
+        position: relative;
+        max-width: 1680px;
+        min-height: 600px;
+        margin: auto;
+        padding: 0 15px 15px
+    }
+
+.cases-block[data-v-8c22bb33] {
+    margin-bottom: 30px
+}
+
+.case-links-container {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 15px
+}
+
+@media screen and (max-width: 800px) {
+    .case-links-container {
+        grid-template-columns:repeat(3,1fr)
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .case-links-container {
+        grid-template-columns:repeat(2,1fr)
+    }
+}
+
+.case-image {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: auto;
+    transition: .25s;
+    padding-top: 17px
+}
+
+.case-name {
+    position: absolute;
+    left: 0;
+    bottom: 75px;
+    width: 100%;
+    font-size: .875rem;
+    font-weight: 500;
+    color: #e3e3e5;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: .01em
+}
+
+.case-price {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translate(-50%);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: .875rem;
+    color: #e3e3e5;
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #2d2a4f!important;
+    transition: .25s
+}
+
+.old-price {
+    margin-right: 5px;
+    color: #ff4d55;
+    text-decoration: line-through
+}
+
+.open-case-expression {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 100%;
+    max-width: 150px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-size: .875rem;
+    color: #e3e3e5;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 95%;
+    background-color: #ff4d55;
+    opacity: 0;
+    transition: .25s
+}
+
+.caseurl1 {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    padding-bottom: 109px;
+    text-decoration: none;
+    background-color: #1c193d;
+    border: none;
+    border-radius: 23px;
+}
+
+.casesTEXT {
+    margin: 0 0 30px;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: -.01em;
+    color: #ffff;
+}
+
+@media screen and (max-width: 425px) {
+    .casesTEXT {
+        font-size:1.25rem
+    }
+}

@@ -4,6 +4,14 @@ from email.policy import default
 from users.models import UsersAb
 from django.db import models
 
+class Inventory(models.Model):
+    user = models.ForeignKey(UsersAb, models.CASCADE)
+    item_id = models.IntegerField(default=0)
+    item_name = models.CharField(max_length=255)
+    
+    def __str__(self) -> str:
+        return self.user.username + " " + self.item_name
+
 class Skins(models.Model):
     skin = models.CharField(max_length=255)
     image = models.ImageField(upload_to="SKINS/", default=None)
@@ -17,6 +25,15 @@ class Orders(models.Model):
     gold = models.FloatField(default=0)
     gold_commision = models.FloatField(default=0)
     data = models.DateTimeField(auto_now=True,null=True, blank=True)
+    is_ordered = models.BooleanField(default=False, null=True, blank=True)
+
+class OrdersHistory(models.Model):
+    user = models.ForeignKey(UsersAb, models.CASCADE, null=False, blank=True)
+    skin = models.CharField(max_length=255, null=True, blank=True)
+    gold = models.FloatField(default=0)
+    gold_commision = models.FloatField(default=0)
+    data = models.DateTimeField(auto_now=False,null=True, blank=True)
+    succes_data = models.DateField(auto_now=True, null=True, blank=True)
     is_ordered = models.BooleanField(default=False, null=True, blank=True)
 
  
