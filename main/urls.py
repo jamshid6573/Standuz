@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index, get_balans, give_order, case_details, profile, balance_check, inventory_add, sell_item,  sell_all, reviews, gold, orders
+from .views import index, get_balans, give_order, case_details, profile, balance_check, inventory_add, sell_item,  sell_all, reviews, gold, orders, 
 
 urlpatterns = [
     path('index/', index, name= 'index'),
@@ -13,9 +13,9 @@ urlpatterns = [
     path('sell_all/', sell_all, name='sell_all'),
     path('reviews/', reviews, name='reviews'),
     path('gold/', gold, name='gold'),
-    path('orders/', orders, name='orders')
+    path('orders/', orders, name='orders'),
 
     
-    #path('balans_update/', update_balans, name='update_balans'),
+    path('balans_update/', update_balans, name='update_balans'),
 ]
 
