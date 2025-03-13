@@ -79,14 +79,7 @@ WSGI_APPLICATION = 'Standoff2.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'postgres',
-    #     'USER': 'postgres',
-    #     'PASSWORD': 'jamshid007',
-    #     'HOST': 'localhost',
-    #     'PORT': 5432
-    # }
+
 
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
