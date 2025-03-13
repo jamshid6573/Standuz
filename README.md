@@ -66,8 +66,7 @@ python manage.py runserver
 The project will be available at `http://127.0.0.1:8000`
 
 ## License
-
-MIT License
+[MIT License](LICENSE)
 
 ## Contact
 
